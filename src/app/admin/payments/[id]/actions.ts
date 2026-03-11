@@ -3,9 +3,15 @@
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { createClient as createSupabaseAdmin } from "@supabase/supabase-js";
+import { isAdmin } from "@/lib/auth";
 
 export async function getPaymentDetails(paymentId: string) {
   try {
+    // Security: Verify authorized user (admin)
+    if (!(await isAdmin())) {
+      return { error: "No autorizado." };
+    }
+
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!serviceKey || serviceKey.length < 10) {
       console.error("ADMIN_MISSING_KEY: SUPABASE_SERVICE_ROLE_KEY is missing or too short:", serviceKey?.length);
@@ -68,12 +74,16 @@ export async function approvePayment(paymentId: string) {
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!serviceKey) return { error: "Servicio no disponible (ADMIN_KEY_MISSING)" };
 
+    // Verify authorized user (admin)
+    if (!(await isAdmin())) {
+      return { error: "No autorizado. Solo la psicóloga puede realizar esta acción." };
+    }
+
     const supabaseAdmin = createSupabaseAdmin(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       serviceKey
     );
 
-    // Verify authorized user (admin)
     const supabaseShared = await createClient();
     const { data: { user } } = await supabaseShared.auth.getUser();
     if (!user) return { error: "No autorizado." };
@@ -254,6 +264,11 @@ export async function approvePayment(paymentId: string) {
 import { rejectPaymentSchema } from "@/lib/validations";
 
 export async function rejectPayment(paymentId: string, reason: string) {
+  // Security: Verify authorized user (admin)
+  if (!(await isAdmin())) {
+    return { error: "No autorizado. Solo la psicóloga puede realizar esta acción." };
+  }
+
   const supabase = await createClient();
 
   const parseResult = rejectPaymentSchema.safeParse({ paymentId, reason });

@@ -20,6 +20,27 @@ export async function POST(req: NextRequest) {
       }
     );
 
+    // 1. Authenticate user
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json({ message: "No autorizado" }, { status: 401 });
+    }
+
+    // 2. Verify appointment ownership
+    const { data: appointment, error: apptError } = await supabase
+      .from("appointments")
+      .select("patient_id")
+      .eq("id", appointmentId)
+      .single();
+
+    if (apptError || !appointment || appointment.patient_id !== user.id) {
+       // Also check if admin
+       const ADMIN_EMAILS = ["carolinavillabon01@gmail.com", "ingyeisonruiz26@gmail.com"];
+       if (!user.email || !ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+         return NextResponse.json({ message: "No tienes permiso para acceder a esta cita" }, { status: 403 });
+       }
+    }
+
     // Get the assistant response
     const assistantMessage = await getChatResponse(history);
 
@@ -91,10 +112,11 @@ export async function POST(req: NextRequest) {
       isFinished: assistantMessage.toLowerCase().includes("información ya está lista") 
     });
 
-  } catch (error: any) {
-    console.error("[Pre-consult API Error]:", error);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    console.error("[Pre-consult API Error]:", errorMessage);
     return NextResponse.json({ 
-      message: "Lo siento, tuve un problema técnico. ¿Podrías intentar de nuevo? Error: " + (error.message || "Unknown error"),
+      message: "Lo siento, tuve un problema técnico. ¿Podrías intentar de nuevo? Error: " + errorMessage,
       error: "No se pudo procesar tu mensaje" 
     }, { status: 200 }); // Retornamos 200 con mensaje de error para evitar burbujas vacías
   }

@@ -8,7 +8,7 @@ const ADMIN_ROUTES = ["/admin"];
 const PATIENT_ROUTES = ["/paciente", "/book", "/dashboard"];
 
 // Routes that don't require authentication
-const PUBLIC_ROUTES = ["/", "/login", "/registro", "/auth"];
+const PUBLIC_ROUTES = ["/", "/login", "/registro", "/auth", "/blog"];
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({

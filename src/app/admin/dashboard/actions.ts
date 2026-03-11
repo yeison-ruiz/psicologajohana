@@ -2,12 +2,18 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { isAdmin } from "@/lib/auth";
 
 export async function completeAppointmentAction(
   appointmentId: string, 
   patientId: string, 
   notes?: string
 ) {
+  // Security: Check if requester is admin
+  if (!(await isAdmin())) {
+    return { error: "No autorizado. Solo la psicóloga puede realizar esta acción." };
+  }
+
   const supabase = await createClient();
 
   // 1. Update appointment status to DONE
@@ -46,6 +52,11 @@ export async function completeAppointmentAction(
   return { success: true };
 }
 export async function markNoShowAction(appointmentId: string, patientId: string) {
+  // Security: Check if requester is admin
+  if (!(await isAdmin())) {
+    return { error: "No autorizado. Solo la psicóloga puede realizar esta acción." };
+  }
+
   const supabase = await createClient();
 
   const { error } = await supabase

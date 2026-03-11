@@ -23,9 +23,33 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Psicóloga Johana Villabón | Salud Mental",
+  title: "Psicóloga Johana Villabón | Terapia y Salud Mental Online",
   description:
-    "Plataforma digital para consulta psicológica. Agenda tu sesión online de manera fácil, segura y confidencial.",
+    "Descubre un espacio seguro para tu bienestar emocional. Consulta psicológica profesional online con la Psicóloga Johana Villabón. Terapia individual, conjunta y para el desarrollo personal.",
+  keywords: ["psicóloga online", "terapia psicológica", "salud mental", "psicóloga colombia", "bienestar emocional"],
+  authors: [{ name: "Johana Villabón" }],
+  openGraph: {
+    title: "Psicóloga Johana Villabón | Salud Mental",
+    description: "Agenda tu sesión online de manera fácil, segura y confidencial.",
+    url: "https://psicologajohanavillabon.com",
+    siteName: "Psicóloga Johana Villabón",
+    images: [
+      {
+        url: "/profesional.png",
+        width: 800,
+        height: 600,
+        alt: "Psicóloga Johana Villabón",
+      },
+    ],
+    locale: "es_CO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Psicóloga Johana Villabón | Salud Mental",
+    description: "Terapia psicológica profesional desde la comodidad de tu hogar.",
+    images: ["/profesional.png"],
+  },
 };
 
 export default function RootLayout({
