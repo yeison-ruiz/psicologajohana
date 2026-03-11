@@ -1,0 +1,161 @@
+﻿
+> temp_app@0.1.0 build
+> next build
+
+node.exe : ÔÜá Warning: Next.js inferred your 
+workspace root, but it may not be correct.
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ÔÜá Wa 
+   rning: Ne...not be correct.:String) [], RemoteE  
+  xception
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ We detected multiple lockfiles and selected the 
+directory of C:\Users\Janus\pnpm-lock.yaml as the 
+root directory.
+ To silence this warning, set `turbopack.root` in 
+your Next.js config, or consider removing one of 
+the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/con
+fig/next-config-js/turbopack#root-directory for 
+more information.
+ Detected additional lockfiles: 
+   * C:\Users\Janus\Desktop\psicologajohana\package-
+lock.json
+
+Ôû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+- Experiments (use with caution):
+  ┬À serverActions
+
+ÔÜá The "middleware" file convention is deprecated. 
+Please use "proxy" instead. Learn more: 
+https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+./Desktop/psicologajohana/src/app/page.tsx:8:1
+Export User doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m 
+[33mImage[39m [36mfrom[39m 
+[32m"next/image"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { createClient } 
+[36mfrom[39m 
+[32m"@/utils/supabase/client"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m 
+[36mimport[39m { [33mUser[39m } [36mfrom[39m 
+[32m"@supabase/supabase-js"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { toast } 
+[36mfrom[39m [32m"sonner"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { 
+testimonialsData } [36mfrom[39m 
+[32m"@/constants/landing"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { format } 
+[36mfrom[39m [32m"date-fns"[39m[33m;[39m[0m
+
+The export User was not found in module [project]/De
+sktop/psicologajohana/node_modules/@supabase/supabas
+e-js/dist/index.mjs [app-client] (ecmascript).
+Did you mean to import isAuthRetryableFetchError?
+All exports of the module are statically known (It 
+doesn't have dynamic exports). So it's known 
+statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Client Component Browser]
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Server Component]
+
+  Client Component SSR:
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Client Component SSR]
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Server Component]
+
+
+./Desktop/psicologajohana/src/app/page.tsx:8:1
+Export User doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m 
+[33mImage[39m [36mfrom[39m 
+[32m"next/image"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { createClient } 
+[36mfrom[39m 
+[32m"@/utils/supabase/client"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m 
+[36mimport[39m { [33mUser[39m } [36mfrom[39m 
+[32m"@supabase/supabase-js"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { toast } 
+[36mfrom[39m [32m"sonner"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { 
+testimonialsData } [36mfrom[39m 
+[32m"@/constants/landing"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { format } 
+[36mfrom[39m [32m"date-fns"[39m[33m;[39m[0m
+
+The export User was not found in module [project]/De
+sktop/psicologajohana/node_modules/@supabase/supabas
+e-js/dist/index.mjs [app-ssr] (ecmascript).
+Did you mean to import isAuthRetryableFetchError?
+All exports of the module are statically known (It 
+doesn't have dynamic exports). So it's known 
+statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Client Component Browser]
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Server Component]
+
+  Client Component SSR:
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Client Component SSR]
+    ./Desktop/psicologajohana/src/app/page.tsx 
+[Server Component]
+
+
+    at <unknown> 
+(./Desktop/psicologajohana/src/app/page.tsx:8:1)
+    at <unknown> 
+(./Desktop/psicologajohana/src/app/page.tsx:8:1)

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PsicoConnect - Payment Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#457eba",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14191e",
+                        "success": "#10b981", // Emerald-500
+                        "danger": "#e11d48", // Rose-600
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm">
+<!-- Modal Container -->
+<div class="relative flex w-full max-w-[1400px] h-[90vh] flex-col overflow-hidden bg-white dark:bg-slate-900 rounded-xl shadow-2xl ring-1 ring-slate-900/5">
+<!-- Header (Mobile/Tablet visible, Desktop Integrated) -->
+<div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 px-6 py-4 bg-white dark:bg-slate-900 shrink-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+<div>
+<h2 class="text-lg font-bold leading-tight text-slate-900 dark:text-white">Payment Verification</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">TXN-8392 • <span class="text-primary font-medium">Pending Review</span></p>
+</div>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Main Content Split View -->
+<div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
+<!-- Left Panel: Visual (Image Viewer) -->
+<div class="relative flex-1 bg-slate-100 dark:bg-slate-950 flex items-center justify-center overflow-hidden group/image-viewer p-8">
+<!-- Grid Pattern Background -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#457eba 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Main Image -->
+<div class="relative shadow-xl rounded-lg overflow-hidden max-h-full max-w-full transition-transform duration-200 ease-out hover:cursor-zoom-in">
+<img alt="Payment receipt showing bank transfer details on a phone screen" class="object-contain max-h-[70vh] w-auto block" data-alt="Payment receipt showing bank transfer details on a phone screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjezxuN-p7Uz8Fy0XXFUCZWo8EalTl06_4mKhYZbKx3cc6RmaQToKwNID9GY7C2whjaTzlBUtqEPQXVwwgb8kpyzyvyyIr56ElgYf5GQ1H9BvhFYKMeHCq7pHYqKoacBRoTTIaZAeK8oF-KrKOHU8_WtJTIrX2On-NMkF_6FHp65ie8z-DxhXHcRV8rzHsb8DzD8-xAOMu9VZuqmqfVmKn5CnI_6FCm6DGntg3-SFeJUfIuo1DF-QCvo2n_EuqDBj_m3mbzkwZOg"/>
+</div>
+<!-- Floating Image Controls -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur shadow-lg rounded-full px-4 py-2 border border-slate-200 dark:border-slate-700 opacity-0 group-hover/image-viewer:opacity-100 transition-opacity duration-300">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="text-xs font-semibold w-12 text-center tabular-nums text-slate-900 dark:text-white">100%</span>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<div class="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1"></div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-600 dark:text-slate-300" title="Rotate">
+<span class="material-symbols-outlined text-[20px]">rotate_right</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-primary" title="View Full Size">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Right Panel: Data & Actions -->
+<div class="w-full lg:w-[480px] xl:w-[520px] flex flex-col bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 h-full overflow-hidden">
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<!-- Patient Profile -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-full bg-cover bg-center ring-2 ring-white dark:ring-slate-700 shadow-sm" data-alt="Portrait of Ana Garcia, a smiling young woman" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDE6tD5uGGzWILRb5bSlzS_kWTZtvIDuN6pSSlSzNJA_d5z1sy7zPOrVKPPH-ZfVq0dSQRrT6zR2NpKK8MipE0bd7n8ogOl2H9n2DKRoi_--1DZIHg24maooyQWYw5TsvbNmiwDPINjDxuSDN-AFtZljIBJkQFhwBt9bv8EP1Urrb5NLonLHalvEqnAdfLWXtMlI18ODwQlCr4WVosr1wAyAsZp3WHU1xOqaoINDrAEB8ps4u-1lu-RAcLAS9CK-2Q916dhDcvdPQ');">
+</div>
+<div class="absolute -bottom-1 -right-1 bg-success h-5 w-5 rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center" title="Verified Patient">
+<span class="material-symbols-outlined text-[12px] text-white font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Ana Garcia</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Patient since Oct 2022</p>
+<div class="flex items-center gap-1 mt-1 text-primary text-sm font-medium">
+<span class="material-symbols-outlined text-[16px]">calendar_month</span>
+<span>Next Session: Today, 10:00 AM</span>
+</div>
+</div>
+</div>
+<!-- Appointment Details -->
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                                Session Details
+                            </h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 sm:col-span-1 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+<p class="text-xs text-slate-500 mb-1">Session Type</p>
+<p class="font-medium text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">psychology</span>
+                                        CBT Therapy
+                                    </p>
+</div>
+<div class="col-span-2 sm:col-span-1 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+<p class="text-xs text-slate-500 mb-1">Date &amp; Time</p>
+<p class="font-medium text-slate-900 dark:text-white">Oct 24, 2023 • 10:00 AM</p>
+</div>
+<div class="col-span-2 p-3 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 mb-1">Google Meet Link</p>
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">meet.google.com/abc-defg-hij</p>
+</div>
+<span class="px-2 py-1 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-medium rounded">
+                                        Release on Approval
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Financial Comparison -->
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">attach_money</span>
+                                Financial Verification
+                            </h4>
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-5 border border-primary/10 dark:border-primary/20">
+<div class="flex items-center justify-between mb-4 pb-4 border-b border-dashed border-primary/20">
+<div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Expected Amount</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white font-mono tracking-tight">$80.00</p>
+</div>
+<div class="text-right">
+<p class="text-sm text-slate-500 dark:text-slate-400">Declared by Patient</p>
+<p class="text-2xl font-bold text-primary font-mono tracking-tight">$80.00</p>
+</div>
+</div>
+<div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-success text-[20px] shrink-0">check_circle</span>
+<p>Amounts match perfectly. Please verify the receipt image confirms this transfer.</p>
+</div>
+</div>
+</div>
+<!-- Rejection Flow (Collapsible/Conditional) -->
+<div class="pt-2 border-t border-slate-200 dark:border-slate-800">
+<details class="group/rejection">
+<summary class="list-none cursor-pointer flex items-center justify-between py-2 text-sm font-medium text-danger hover:text-red-700 transition-colors">
+<span>Need to reject this payment?</span>
+<span class="material-symbols-outlined group-open/rejection:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="pt-4 pb-2 animate-in slide-in-from-top-2 fade-in duration-200">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Reason for rejection</label>
+<!-- Chips -->
+<div class="flex flex-wrap gap-2 mb-3">
+<button class="px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200 hover:border-danger hover:text-danger bg-white dark:bg-slate-800 dark:border-slate-700 transition-colors">Wrong Amount</button>
+<button class="px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200 hover:border-danger hover:text-danger bg-white dark:bg-slate-800 dark:border-slate-700 transition-colors">Illegible Receipt</button>
+<button class="px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200 hover:border-danger hover:text-danger bg-white dark:bg-slate-800 dark:border-slate-700 transition-colors">Duplicate Transaction</button>
+</div>
+<textarea class="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:border-danger focus:ring-danger shadow-sm resize-none" placeholder="Add a note to Ana explaining why the payment is being rejected..." rows="3"></textarea>
+</div>
+</details>
+</div>
+</div>
+<!-- Sticky Action Footer -->
+<div class="shrink-0 p-6 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-4">
+<button class="flex-1 px-4 py-3 rounded-lg border-2 border-danger/20 text-danger font-semibold hover:bg-danger/5 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined">close</span>
+                            Reject
+                        </button>
+<button class="flex-[2] px-6 py-3 rounded-lg bg-success hover:bg-emerald-600 text-white font-semibold shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check</span>
+                            Approve Payment
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

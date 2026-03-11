@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PsicoConnect - Patient Portal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "primary-dark": "#0eb344",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2e22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden w-64 flex-col border-r border-slate-200 bg-surface-light dark:bg-surface-dark dark:border-slate-800 md:flex">
+<div class="flex h-20 items-center gap-3 px-6 border-b border-slate-100 dark:border-slate-800">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary-dark dark:text-primary">
+<span class="material-symbols-outlined text-2xl">psychology</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold text-slate-900 dark:text-white">PsicoConnect</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Patient Portal</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 py-6">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-3 rounded-lg bg-primary/10 px-4 py-3 text-sm font-medium text-slate-900 dark:text-white" href="#">
+<span class="material-symbols-outlined fill text-primary-dark dark:text-primary">dashboard</span>
+                            Dashboard
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                            Appointments
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+                            Payments
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+                            Documents
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+                            Profile
+                        </a>
+</li>
+</ul>
+</nav>
+<div class="border-t border-slate-100 p-4 dark:border-slate-800">
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/10 transition-colors mt-1" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Log Out
+                </a>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex flex-1 flex-col overflow-hidden">
+<!-- Top Header -->
+<header class="flex h-20 items-center justify-between border-b border-slate-200 bg-surface-light px-8 dark:bg-surface-dark dark:border-slate-800">
+<div class="flex items-center gap-4">
+<button class="text-slate-500 md:hidden hover:text-slate-700 dark:text-slate-400">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Dashboard</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:block">
+<label class="relative flex items-center">
+<span class="absolute left-3 text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="h-10 w-64 rounded-lg border-none bg-slate-100 pl-10 text-sm text-slate-900 placeholder-slate-500 focus:ring-2 focus:ring-primary dark:bg-slate-800 dark:text-white dark:placeholder-slate-400" placeholder="Search..." type="text"/>
+</label>
+</div>
+<button class="relative rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 overflow-hidden rounded-full bg-slate-200">
+<img alt="Profile picture of Sarah" class="h-full w-full object-cover" data-alt="Portrait of a smiling woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLYfMLISROBnzL8Yek6z6UFgDpxG9nYaF_PQqp3QbzLasCR70egCfS4eEvD5GoCNbqLOo95AyEVPyPcASvoCCayxGeICIQPfLUgngGK5hAbC-X0dGvdAP22uer__Dn7NEqcXs3n1WUQkH06bmCCeLaM6_cdXy3CrMPdvitWlbh7LUuXapUuMb6YkGSCxYdQRKNwpu7ROGWeGhM1dCv-8_CGGWCpSjA8alYZP0kw7bon05cklXAOR87VZPGcOUhZ6uCtFwj0v5Oiw"/>
+</div>
+<div class="hidden md:block">
+<p class="text-sm font-medium text-slate-900 dark:text-white">Sarah Jenkins</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Patient ID: #88321</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<main class="flex-1 overflow-y-auto bg-background-light p-8 dark:bg-background-dark">
+<div class="mx-auto max-w-5xl space-y-8">
+<!-- Welcome Banner -->
+<section class="relative overflow-hidden rounded-xl bg-surface-light p-8 shadow-sm dark:bg-surface-dark">
+<div class="relative z-10 flex flex-col gap-2">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white">Good morning, Sarah</h1>
+<p class="text-slate-600 dark:text-slate-300">Your mental health journey continues here. You have an upcoming session today.</p>
+</div>
+<!-- Abstract decorative background -->
+<div class="absolute right-0 top-0 h-full w-1/3 opacity-10 pointer-events-none">
+<div class="absolute inset-0 bg-gradient-to-l from-primary to-transparent"></div>
+</div>
+</section>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+<!-- Left Column: Hero Card & Actions -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Next Session Card -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-light shadow-sm transition-all hover:shadow-md dark:bg-surface-dark border border-slate-100 dark:border-slate-800">
+<div class="flex flex-col md:flex-row">
+<div class="relative h-48 w-full md:h-auto md:w-1/3">
+<div class="h-full w-full bg-cover bg-center" data-alt="Female psychologist sitting in office" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUGmZ0l8tVOutXVrMtcU8wQ4_drlBhDQNSKNAgj8quzVXUomxasDEcOGYcBU-HkeEmtpvFzlZwmphNqI3zY0DKjRgcOmi7gVsk9ZTmZegwK5TWkxJVMj-ym6H3oNO6veBhh0Mx6QHgDB3mpnXurB-XzCu7bMYA6uZLrFn7RRnT0Npw_QoinH13lyXnhYiL5x9MpOBV824SIv7OhiNQjs_g1v_aTSRxkhWnMzst7dIAFIyEqLiY2YE_Aayzog8E1ypXLDAZVkJ_HA');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden"></div>
+<div class="absolute bottom-4 left-4 text-white md:hidden">
+<p class="font-bold">Dr. Emily Rivera</p>
+<p class="text-sm opacity-90">Clinical Psychologist</p>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-between p-6">
+<div>
+<div class="mb-4 flex items-center justify-between">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary-dark dark:text-primary">
+<span class="mr-1.5 relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                                                    Upcoming Session
+                                                </span>
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">50 min session</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">Next Session</h3>
+<p class="mt-1 text-lg font-medium text-primary-dark dark:text-primary">October 24, 2023 • 10:00 AM</p>
+<div class="mt-4 hidden md:block">
+<p class="font-semibold text-slate-900 dark:text-white">Dr. Emily Rivera</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Clinical Psychologist</p>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-4">
+<button class="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-slate-900 hover:bg-primary-dark hover:text-white transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">video_camera_front</span>
+                                                Join Google Meet
+                                            </button>
+<button class="rounded-lg border border-slate-200 p-3 text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors" title="Reschedule">
+<span class="material-symbols-outlined">edit_calendar</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Appointment Status Timeline -->
+<div class="rounded-xl bg-surface-light p-6 shadow-sm dark:bg-surface-dark border border-slate-100 dark:border-slate-800">
+<h3 class="mb-6 text-lg font-bold text-slate-900 dark:text-white">Appointment Status</h3>
+<div class="relative">
+<!-- Mobile Vertical Timeline -->
+<div class="md:hidden space-y-6 pl-4 border-l-2 border-slate-100 dark:border-slate-800 ml-2">
+<div class="relative pl-6">
+<span class="absolute -left-[21px] flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark"></span>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Created</p>
+<p class="text-xs text-slate-500">Oct 20, 09:30 AM</p>
+</div>
+<div class="relative pl-6">
+<span class="absolute -left-[21px] flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark"></span>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Payment Uploaded</p>
+<p class="text-xs text-slate-500">Oct 20, 09:45 AM</p>
+</div>
+<div class="relative pl-6">
+<span class="absolute -left-[21px] flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark"></span>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Under Review</p>
+<p class="text-xs text-slate-500">Oct 21, 10:00 AM</p>
+</div>
+<div class="relative pl-6">
+<div class="absolute -left-[25px] flex h-6 w-6 items-center justify-center rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-white text-[14px]">check</span>
+</div>
+<p class="text-sm font-bold text-primary-dark dark:text-primary">Confirmed</p>
+<p class="text-xs text-slate-500">Oct 21, 02:15 PM</p>
+</div>
+<div class="relative pl-6 opacity-50">
+<span class="absolute -left-[21px] flex h-4 w-4 items-center justify-center rounded-full bg-slate-200 ring-4 ring-white dark:bg-slate-700 dark:ring-surface-dark"></span>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Session</p>
+<p class="text-xs text-slate-500">Upcoming</p>
+</div>
+</div>
+<!-- Desktop Horizontal Timeline -->
+<div class="hidden md:flex justify-between relative z-10">
+<div class="flex flex-col items-center gap-2 flex-1 relative group">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shadow-sm z-10">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<p class="text-xs font-semibold text-slate-900 dark:text-white text-center">Created</p>
+<!-- Connector Line -->
+<div class="absolute top-4 left-1/2 w-full h-0.5 bg-primary -z-0"></div>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 relative group">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shadow-sm z-10">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<p class="text-xs font-semibold text-slate-900 dark:text-white text-center">Payment</p>
+<div class="absolute top-4 left-1/2 w-full h-0.5 bg-primary -z-0"></div>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 relative group">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shadow-sm z-10">
+<span class="material-symbols-outlined text-lg">check</span>
+</div>
+<p class="text-xs font-semibold text-slate-900 dark:text-white text-center">Review</p>
+<div class="absolute top-4 left-1/2 w-full h-0.5 bg-primary -z-0"></div>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 relative group">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-slate-900 shadow-md ring-4 ring-primary/20 z-10">
+<span class="material-symbols-outlined text-lg">done_all</span>
+</div>
+<p class="text-xs font-bold text-primary-dark dark:text-primary text-center">Confirmed</p>
+<div class="absolute top-4 left-1/2 w-full h-0.5 bg-slate-200 dark:bg-slate-700 -z-0"></div>
+</div>
+<div class="flex flex-col items-center gap-2 flex-1 relative group">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 text-slate-400 dark:bg-slate-700 dark:text-slate-500 z-10">
+<span class="material-symbols-outlined text-lg">videocam</span>
+</div>
+<p class="text-xs font-medium text-slate-400 dark:text-slate-500 text-center">Session</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Quick Actions & History -->
+<div class="space-y-8">
+<!-- Quick Actions -->
+<div class="rounded-xl bg-surface-light p-6 shadow-sm dark:bg-surface-dark border border-slate-100 dark:border-slate-800">
+<h3 class="mb-4 text-lg font-bold text-slate-900 dark:text-white">Quick Actions</h3>
+<div class="grid grid-cols-1 gap-3">
+<button class="flex w-full items-center gap-4 rounded-lg border border-slate-200 p-4 text-left transition-colors hover:border-primary hover:bg-slate-50 dark:border-slate-700 dark:hover:border-primary dark:hover:bg-slate-800/50">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Schedule New Appointment</span>
+</button>
+<button class="flex w-full items-center gap-4 rounded-lg border border-slate-200 p-4 text-left transition-colors hover:border-primary hover:bg-slate-50 dark:border-slate-700 dark:hover:border-primary dark:hover:bg-slate-800/50">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<span class="font-medium text-slate-900 dark:text-white">Upload Payment Proof</span>
+</button>
+</div>
+</div>
+<!-- My Appointments List -->
+<div class="rounded-xl bg-surface-light p-6 shadow-sm dark:bg-surface-dark border border-slate-100 dark:border-slate-800">
+<div class="mb-4 flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">My Appointments</h3>
+<a class="text-sm font-medium text-primary-dark hover:text-primary hover:underline dark:text-primary" href="#">View All</a>
+</div>
+<div class="space-y-4">
+<!-- Current Item (Highlighted slightly) -->
+<div class="flex items-center justify-between rounded-lg bg-slate-50 p-3 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-center justify-center rounded-md bg-white px-2 py-1 shadow-sm dark:bg-slate-700">
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400">OCT</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white">24</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Psychotherapy</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">10:00 AM • Dr. Rivera</p>
+</div>
+</div>
+<span class="rounded-full bg-primary/20 px-2 py-0.5 text-xs font-medium text-primary-dark dark:text-primary">Confirmed</span>
+</div>
+<!-- Past Item -->
+<div class="flex items-center justify-between p-2">
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-center justify-center rounded-md bg-slate-100 px-2 py-1 dark:bg-slate-800">
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400">OCT</span>
+<span class="text-lg font-bold text-slate-400 dark:text-slate-500">10</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Psychotherapy</p>
+<p class="text-xs text-slate-400 dark:text-slate-500">02:00 PM • Dr. Rivera</p>
+</div>
+</div>
+<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">Completed</span>
+</div>
+<!-- Past Item -->
+<div class="flex items-center justify-between p-2">
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-center justify-center rounded-md bg-slate-100 px-2 py-1 dark:bg-slate-800">
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400">SEP</span>
+<span class="text-lg font-bold text-slate-400 dark:text-slate-500">28</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Initial Consultation</p>
+<p class="text-xs text-slate-400 dark:text-slate-500">11:30 AM • Dr. Rivera</p>
+</div>
+</div>
+<span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">Completed</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

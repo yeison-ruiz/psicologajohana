@@ -1,0 +1,12 @@
+﻿src/app/(patient)/paciente/perfil/page.tsx(47,15): error TS2345: Argument of type '{ user: User; profile: { full_name: any; phone_number: any; notification_preferences: any; } | null; } | null' is not assignable to parameter of type 'SetStateAction<{ user: { email: string; }; profile: { full_name: string; phone_number: string | null; notification_preferences: any; } | null; } | null>'.
+  Type '{ user: User; profile: { full_name: any; phone_number: any; notification_preferences: any; } | null; }' is not assignable to type 'SetStateAction<{ user: { email: string; }; profile: { full_name: string; phone_number: string | null; notification_preferences: any; } | null; } | null>'.
+    Type '{ user: User; profile: { full_name: any; phone_number: any; notification_preferences: any; } | null; }' is not assignable to type '{ user: { email: string; }; profile: { full_name: string; phone_number: string | null; notification_preferences: any; } | null; }'.
+      The types of 'user.email' are incompatible between these types.
+        Type 'string | undefined' is not assignable to type 'string'.
+          Type 'undefined' is not assignable to type 'string'.
+src/app/admin/dashboard/page.tsx(143,23): error TS2304: Cannot find name 'approveAppointment'.
+src/app/admin/dashboard/page.tsx(151,23): error TS2304: Cannot find name 'rejectAppointment'.
+src/app/admin/dashboard/page.tsx(214,30): error TS2304: Cannot find name 'setSidebarOpen'.
+src/app/admin/payments/[id]/actions.ts(151,12): error TS2339: Property 'eq' does not exist on type 'PostgrestQueryBuilder<any, any, any, "psicologa_settings", unknown>'.
+src/app/admin/settings/page.tsx(236,24): error TS2304: Cannot find name 'cn'.
+src/app/page.tsx(1500,26): error TS2693: 'User' only refers to a type, but is being used as a value here.
