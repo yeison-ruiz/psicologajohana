@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-white pt-12 md:pt-24 pb-0 overflow-hidden"
+      className="relative bg-white pt-24 pb-0 overflow-hidden"
     >
       {/* Decorative cross/plus patterns — top right */}
       <div className="absolute top-8 right-[12%] opacity-[0.08]">
@@ -43,7 +43,7 @@ export default function About() {
           <div className="relative">
             {/* Main Photo wrapper */}
             <div className="relative w-full max-w-[480px] mx-auto lg:ml-12 group">
-              <div className="relative w-full h-[360px] md:h-[620px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
+              <div className="relative w-full h-[620px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
                 <Image
                   src="/profesional.png"
                   alt="Psicóloga Johana Villabón"
@@ -55,7 +55,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* Quote Card — block on mobile, absolute on lg+ */}
+            {/* Quote Card — absolute on desktop, static block on mobile */}
             <div className="mt-5 lg:absolute lg:-bottom-8 lg:-right-24 bg-[#f8f3ee] px-5 py-5 lg:px-8 lg:py-8 w-full lg:w-[340px] shadow-lg lg:shadow-2xl border-l-[6px] border-[#8A6046] rounded-2xl lg:rounded-r-3xl z-20">
               <span
                 className="text-[#8A6046] text-[36px] lg:text-[44px] font-bold leading-none block mb-1"
@@ -86,7 +86,7 @@ export default function About() {
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-[#2b2b2b] text-[32px] md:text-[44px] lg:text-[56px] font-black leading-[1.05] mb-8 tracking-tight">
+            <h2 className="text-[#2b2b2b] text-[44px] lg:text-[56px] font-black leading-[1.05] mb-8 tracking-tight">
               Soy la{" "}
               <span
                 className="italic font-normal text-[#8A6046]"

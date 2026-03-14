@@ -7,14 +7,14 @@ export default function AIInnovation() {
   return (
     <section
       id="ai-innovation"
-      className="py-24 bg-white relative overflow-hidden"
+      className="py-12 md:py-24 bg-white relative overflow-hidden"
     >
       {/* Background blobs for tech feel */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8A6046]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#8A6046]/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
           {/* Left: Interactive Feel Mockup / Visual */}
           <div className="flex-1 w-full lg:max-w-[600px]">
             <div className="relative">
@@ -79,7 +79,7 @@ export default function AIInnovation() {
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                className="absolute -bottom-6 -right-6 md:-right-12 bg-white p-6 rounded-2xl shadow-2xl border border-[#8A6046]/10 flex items-center gap-4"
+                className="hidden md:flex absolute -bottom-6 -right-6 md:-right-12 bg-white p-6 rounded-2xl shadow-2xl border border-[#8A6046]/10 items-center gap-4"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#8A6046]/10 flex items-center justify-center">
                   <Cpu className="w-6 h-6 text-[#8A6046]" />
@@ -108,12 +108,12 @@ export default function AIInnovation() {
               </span>
             </div>
 
-            <h2 className="text-[#2b2b2b] text-[40px] lg:text-[54px] font-black leading-[1.05] mb-8 tracking-tight">
+            <h2 className="text-[#2b2b2b] text-[30px] lg:text-[54px] font-black leading-[1.05] mb-6 md:mb-8 tracking-tight">
               Tu sesión inicia <span className="text-[#8A6046]">antes</span> de
               la videollamada.
             </h2>
 
-            <p className="text-[#666] text-[1.3rem] leading-[1.8] mb-10">
+            <p className="text-[#666] text-[1.1rem] md:text-[1.3rem] leading-[1.8] mb-8 md:mb-10">
               Somos pioneros en integrar Inteligencia Artificial diseñada
               exclusivamente para la psicología. Al agendar, nuestro asistente
               te guiará en una breve pre-consulta privada.

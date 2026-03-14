@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function MeetingSection() {
   return (
     <section
-      className="py-0 -mt-[120px] md:-mt-[70px] relative pb-16"
+      className="py-0 mt-0 md:-mt-[70px] relative pb-16"
       style={{ zIndex: 999, backgroundColor: "transparent" }}
     >
       <div className="max-w-[1300px] mx-auto px-6">
