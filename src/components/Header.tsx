@@ -219,7 +219,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-[#8A6046] hover:bg-[#6D4934] text-white text-[10px] md:text-[12px] font-bold uppercase tracking-widest px-2 py-2 md:px-6 md:py-2.5 rounded-full shadow-lg shadow-[#8A6046]/20 transition-all duration-300 whitespace-nowrap"
+                  className="hidden md:inline-flex bg-[#8A6046] hover:bg-[#6D4934] text-white text-[10px] md:text-[12px] font-bold uppercase tracking-widest px-2 py-2 md:px-6 md:py-2.5 rounded-full shadow-lg shadow-[#8A6046]/20 transition-all duration-300 whitespace-nowrap"
                 >
                   Unirse
                 </Link>
