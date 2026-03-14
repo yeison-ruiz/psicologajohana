@@ -213,7 +213,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
               <div className="flex items-center gap-1.5 md:gap-3">
                 <Link
                   href="/login"
-                  className="text-[12px] md:text-[12px] font-black uppercase tracking-widest text-[#8A6046] hover:text-white border-2 border-[#8A6046] hover:bg-[#8A6046] px-4 py-2 md:px-5 md:py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-sm"
+                  className="text-[12px] md:text-[12px] font-black uppercase tracking-widest text-white bg-[#8A6046] hover:bg-[#6D4934] px-4 py-2 md:px-6 md:py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#8A6046]/20"
                 >
                   Entrar
                 </Link>
