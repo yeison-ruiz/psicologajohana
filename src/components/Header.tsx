@@ -192,10 +192,10 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
             </a>
 
             {!loading && user && (
-              <div className="hidden md:flex items-center gap-1.5 md:gap-2">
+              <div className="flex items-center gap-1.5 md:gap-2">
                 <Link
                   href={isPsi ? "/admin/dashboard" : "/dashboard"}
-                  className="bg-[#8A6046] hover:bg-[#6D4934] text-white text-[10px] md:text-[13px] font-bold uppercase tracking-widest px-2 py-2 md:px-7 md:py-3.5 rounded-full shadow-md shadow-[#8A6046]/20 transition-all duration-300 whitespace-nowrap"
+                  className="bg-[#8A6046] hover:bg-[#6D4934] text-white text-[10px] md:text-[13px] font-bold uppercase tracking-widest px-3 py-2 md:px-7 md:py-3.5 rounded-full shadow-md shadow-[#8A6046]/20 transition-all duration-300 whitespace-nowrap"
                 >
                   Dashboard
                 </Link>
@@ -204,7 +204,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                     await createClient().auth.signOut();
                     window.location.reload();
                   }}
-                  className="bg-red-50 border border-red-200 hover:bg-red-600 text-red-600 hover:text-white text-[10px] md:text-[12px] font-bold uppercase tracking-widest px-2 py-2 md:px-6 md:py-3 rounded-full transition-all duration-300 shadow-sm whitespace-nowrap"
+                  className="hidden md:block bg-red-50 border border-red-200 hover:bg-red-600 text-red-600 hover:text-white text-[10px] md:text-[12px] font-bold uppercase tracking-widest px-2 py-2 md:px-6 md:py-3 rounded-full transition-all duration-300 shadow-sm whitespace-nowrap"
                 >
                   Salir
                 </button>
