@@ -109,7 +109,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                 loading="eager"
                 sizes="(max-width: 768px) 150px, 220px"
                 className={`w-auto object-contain transition-all duration-500 ${
-                  isScrolled ? "h-[38px] md:h-[55px]" : "h-[48px] md:h-[70px]"
+                  isScrolled ? "h-[44px] md:h-[55px]" : "h-[60px] md:h-[70px]"
                 }`}
               />
             </Link>
@@ -213,7 +213,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
               <div className="flex items-center gap-1.5 md:gap-3">
                 <Link
                   href="/login"
-                  className="text-[10px] md:text-[12px] font-black uppercase tracking-widest text-[#8A6046] hover:text-white border-2 border-[#8A6046] hover:bg-[#8A6046] px-2 py-1.5 md:px-5 md:py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-sm md:shadow-none"
+                  className="text-[12px] md:text-[12px] font-black uppercase tracking-widest text-[#8A6046] hover:text-white border-2 border-[#8A6046] hover:bg-[#8A6046] px-4 py-2 md:px-5 md:py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-sm"
                 >
                   Entrar
                 </Link>
