@@ -47,7 +47,7 @@ export default function IntroCards() {
         </div>
 
         {/* Right Card */}
-        <div className="flex-2 relative px-10 py-9 text-white flex flex-col justify-center overflow-hidden">
+        <div className="flex-2 relative px-6 py-8 md:px-10 md:py-9 text-white flex flex-col justify-center overflow-hidden">
           {/* Background Image */}
           <div
             className="absolute inset-0 bg-cover bg-center z-0 object-cover"
@@ -60,19 +60,19 @@ export default function IntroCards() {
 
           {/* Content Container (relative z-10 to stay above bg) */}
           <div className="relative z-10 w-full h-full flex flex-col justify-center">
-            <h3 className="text-[26px] sm:text-[30px] lg:text-[36px] leading-none mb-3 uppercase tracking-tighter text-white flex items-baseline gap-x-2 whitespace-nowrap flex-nowrap">
+            <h3 className="text-[22px] sm:text-[30px] lg:text-[36px] leading-none mb-3 uppercase tracking-tighter text-white flex items-baseline gap-x-2 flex-wrap">
               <span className="font-medium">Consulta</span>
-              <span className="text-[48px] sm:text-[54px] lg:text-[64px] font-black text-white leading-none">100%</span>
+              <span className="text-[40px] sm:text-[54px] lg:text-[64px] font-black text-white leading-none">100%</span>
               <span className="font-medium">Online</span>
             </h3>
-            <p className="text-white/80 text-[1.2rem] lg:text-[1.3rem] leading-[1.6] mb-6">
+            <p className="text-white/80 text-[1rem] md:text-[1.2rem] lg:text-[1.3rem] leading-[1.6] mb-6">
               Sesiones seguras por <strong>Google Meet</strong>, integradas en
               tu <strong>Google Calendar</strong> y acompañadas de un{" "}
               <strong>Análisis Pre-sesión con IA</strong>.
             </p>
 
             <div className="flex flex-col gap-6">
-              <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-sm group/ai cursor-help relative overflow-hidden">
+              <div className="flex items-center gap-3 bg-white/5 p-3 md:p-4 rounded-2xl border border-white/10 backdrop-blur-sm group/ai cursor-help relative overflow-hidden">
                 {/* Subtle animated background glow */}
                 <div className="absolute inset-0 bg-linear-to-r from-transparent via-[#8A6046]/10 to-transparent -translate-x-full group-hover/ai:translate-x-full transition-transform duration-1000" />
                 
@@ -132,7 +132,7 @@ export default function IntroCards() {
                       <Brain className="w-4 h-4 text-white/60" />
                     </motion.div>
                   </span>
-                  <p className="text-[11px] text-white/50 font-medium leading-tight mt-1 max-w-[180px]">
+                  <p className="text-[11px] text-white/50 font-medium leading-tight mt-1">
                     Preparamos tu sesión para que aproveches cada minuto al máximo.
                   </p>
                 </div>
@@ -148,7 +148,7 @@ export default function IntroCards() {
                     ),
                   })
                 }
-                className="bg-white text-[#8A6046] px-10 py-5 rounded-full font-black text-[16px] uppercase tracking-widest hover:bg-[#fdfaf7] transition-all shadow-xl inline-block text-center w-fit"
+                className="bg-white text-[#8A6046] px-8 py-4 md:px-10 md:py-5 rounded-full font-black text-[14px] md:text-[16px] uppercase tracking-widest hover:bg-[#fdfaf7] transition-all shadow-xl block md:inline-block text-center w-full md:w-fit"
               >
                 Agendar Cita Virtual
               </Link>
