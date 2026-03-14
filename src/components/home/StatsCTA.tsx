@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function StatsCTA() {
   return (
-    <section className="bg-[#f8f3ee] mt-20 relative overflow-hidden">
+    <section className="bg-[#f8f3ee] mt-10 md:mt-20 relative overflow-hidden">
       {/* Decorative leaf shapes in background */}
       <svg
         className="absolute left-6 top-1/2 -translate-y-1/2 w-[120px] h-[120px] text-[#e0d3c3] opacity-40"
@@ -34,7 +34,7 @@ export default function StatsCTA() {
         <path d="M50,10 Q30,30 35,55 Q40,80 50,90 Q60,80 65,55 Q70,30 50,10 Z" />
       </svg>
 
-      <div className="max-w-[1300px] mx-auto px-6 py-16 relative z-10">
+      <div className="max-w-[1300px] mx-auto px-6 py-10 md:py-16 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[#fdfaf7]/50 p-10 rounded-2xl border border-[#8A6046]/10">
           <div className="max-w-[700px]">
             <h3 className="text-[28px] md:text-[34px] font-bold text-[#2b2b2b] mb-4 leading-tight">

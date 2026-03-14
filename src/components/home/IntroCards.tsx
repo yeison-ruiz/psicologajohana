@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 export default function IntroCards() {
   return (
-    <section className="relative z-20 max-w-[1400px] mx-auto px-6 -mt-[40px] md:-mt-[20px] pb-10">
+    <section className="relative z-20 max-w-[1400px] mx-auto px-6 -mt-[20px] md:-mt-[40px] pb-4 md:pb-10">
       <div className="flex flex-col md:flex-row shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-sm overflow-hidden">
         {/* Left Card */}
         <div className="flex-3 bg-white px-6 py-10 md:px-12 md:py-12 flex flex-col justify-center">

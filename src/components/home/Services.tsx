@@ -62,7 +62,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#2b2b2b] pt-20 pb-40 relative">
+    <section id="services" className="bg-[#2b2b2b] pt-12 pb-20 md:pt-20 md:pb-40 relative">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Header */}
         <div className="max-w-[700px] mb-16 relative z-10">
