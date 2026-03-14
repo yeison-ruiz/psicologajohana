@@ -41,9 +41,9 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left — Photo + Quote */}
           <div className="relative">
-            {/* Main Photo */}
+            {/* Main Photo wrapper */}
             <div className="relative w-full max-w-[480px] mx-auto lg:ml-12 group">
-              <div className="relative w-full h-[380px] md:h-[620px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
+              <div className="relative w-full h-[360px] md:h-[620px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
                 <Image
                   src="/profesional.png"
                   alt="Psicóloga Johana Villabón"
@@ -53,22 +53,22 @@ export default function About() {
                   priority
                 />
               </div>
+            </div>
 
-              {/* Quote Card — absolute on desktop, static block on mobile */}
-              <div className="md:absolute md:-bottom-8 md:right-0 lg:-right-24 mt-4 md:mt-0 bg-[#f8f3ee] px-5 py-5 md:px-8 md:py-8 w-full md:w-[340px] shadow-xl md:shadow-2xl border-l-[6px] border-[#8A6046] rounded-2xl md:rounded-r-3xl z-20">
-                <span
-                  className="text-[#8A6046] text-[36px] md:text-[44px] font-bold leading-none block mb-1"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  &ldquo;
-                </span>
-                <p
-                  className="text-[#444] text-[1.1rem] md:text-[1.25rem] leading-[1.6] italic font-medium"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  Puedo ayudarte a superar los miedos y obstáculos en tu vida.
-                </p>
-              </div>
+            {/* Quote Card — block on mobile, absolute on lg+ */}
+            <div className="mt-5 lg:absolute lg:-bottom-8 lg:-right-24 bg-[#f8f3ee] px-5 py-5 lg:px-8 lg:py-8 w-full lg:w-[340px] shadow-lg lg:shadow-2xl border-l-[6px] border-[#8A6046] rounded-2xl lg:rounded-r-3xl z-20">
+              <span
+                className="text-[#8A6046] text-[36px] lg:text-[44px] font-bold leading-none block mb-1"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                &ldquo;
+              </span>
+              <p
+                className="text-[#444] text-[1.05rem] lg:text-[1.25rem] leading-[1.6] italic font-medium"
+                style={{ fontFamily: "var(--font-playfair)" }}
+              >
+                Puedo ayudarte a superar los miedos y obstáculos en tu vida.
+              </p>
             </div>
           </div>
 
