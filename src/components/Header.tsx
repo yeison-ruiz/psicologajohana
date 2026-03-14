@@ -16,6 +16,7 @@ import {
   MessageCircle,
   Menu,
   X,
+  User as UserIcon
 } from "lucide-react";
 
 interface HeaderProps {
@@ -213,9 +214,22 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
               <div className="flex items-center gap-1.5 md:gap-3">
                 <Link
                   href="/login"
-                  className="text-[12px] md:text-[12px] font-black uppercase tracking-widest text-white bg-[#8A6046] hover:bg-[#6D4934] px-4 py-2 md:px-6 md:py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#8A6046]/20"
+                  className="group flex items-center gap-2 text-[12px] md:text-[12px] font-black uppercase tracking-widest text-white bg-[#8A6046] hover:bg-[#6D4934] px-4 py-2 md:px-6 md:py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#8A6046]/20"
                 >
-                  Entrar
+                  <motion.div
+                    animate={{ 
+                      y: [0, -3, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <UserIcon size={18} className="text-white" />
+                  </motion.div>
+                  <span>Entrar</span>
                 </Link>
               </div>
             )}
