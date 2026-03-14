@@ -109,7 +109,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                 loading="eager"
                 sizes="(max-width: 768px) 150px, 220px"
                 className={`w-auto object-contain transition-all duration-500 ${
-                  isScrolled ? "h-[50px] md:h-[55px]" : "h-[68px] md:h-[70px]"
+                  isScrolled ? "h-[50px] md:h-[65px]" : "h-[68px] md:h-[85px]"
                 }`}
               />
             </Link>
