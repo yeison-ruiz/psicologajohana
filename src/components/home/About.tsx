@@ -43,7 +43,7 @@ export default function About() {
           <div className="relative">
             {/* Main Photo */}
             <div className="relative w-full max-w-[480px] mx-auto lg:ml-12 group">
-              <div className="relative w-full h-[400px] md:h-[620px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
+              <div className="relative w-full h-[380px] md:h-[620px] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
                 <Image
                   src="/profesional.png"
                   alt="Psicóloga Johana Villabón"
@@ -54,16 +54,16 @@ export default function About() {
                 />
               </div>
 
-              {/* Quote Card — repositioned to be much lower and to the side */}
-              <div className="absolute -bottom-8 right-0 md:-right-24 bg-[#f8f3ee] px-5 py-6 md:px-8 md:py-8 w-[260px] md:w-[340px] shadow-2xl border-l-[6px] border-[#8A6046] rounded-r-3xl z-20">
+              {/* Quote Card — absolute on desktop, static block on mobile */}
+              <div className="md:absolute md:-bottom-8 md:right-0 lg:-right-24 mt-4 md:mt-0 bg-[#f8f3ee] px-5 py-5 md:px-8 md:py-8 w-full md:w-[340px] shadow-xl md:shadow-2xl border-l-[6px] border-[#8A6046] rounded-2xl md:rounded-r-3xl z-20">
                 <span
-                  className="text-[#8A6046] text-[44px] font-bold leading-none block mb-2"
+                  className="text-[#8A6046] text-[36px] md:text-[44px] font-bold leading-none block mb-1"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   &ldquo;
                 </span>
                 <p
-                  className="text-[#444] text-[1.25rem] leading-[1.6] italic font-medium"
+                  className="text-[#444] text-[1.1rem] md:text-[1.25rem] leading-[1.6] italic font-medium"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   Puedo ayudarte a superar los miedos y obstáculos en tu vida.
