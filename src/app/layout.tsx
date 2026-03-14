@@ -77,11 +77,11 @@ export default function RootLayout({
           duration={6000}
           toastOptions={{
             style: {
-              background: "#1C1512",
+              background: "transparent",
               border: "none",
-              borderRadius: "16px",
+              borderRadius: "0",
               padding: "0",
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.4)",
+              boxShadow: "none",
               fontFamily: "var(--font-raleway)",
               color: "#ffffff",
             },
