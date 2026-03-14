@@ -110,7 +110,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                 loading="eager"
                 sizes="(max-width: 768px) 150px, 220px"
                 className={`w-auto object-contain transition-all duration-500 ${
-                  isScrolled ? "h-[50px] md:h-[65px]" : "h-[68px] md:h-[85px]"
+                  isScrolled ? "h-[45px] md:h-[65px]" : "h-[62px] md:h-[85px]"
                 }`}
               />
             </Link>
@@ -192,7 +192,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
             </a>
 
             {!loading && user && (
-              <div className="flex items-center gap-1.5 md:gap-2">
+              <div className="hidden md:flex items-center gap-1.5 md:gap-2">
                 <Link
                   href={isPsi ? "/admin/dashboard" : "/dashboard"}
                   className="bg-[#8A6046] hover:bg-[#6D4934] text-white text-[10px] md:text-[13px] font-bold uppercase tracking-widest px-2 py-2 md:px-7 md:py-3.5 rounded-full shadow-md shadow-[#8A6046]/20 transition-all duration-300 whitespace-nowrap"
@@ -294,29 +294,26 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
               </div>
             </a>
             {/* Authentication / Dashboard buttons in Mobile Menu */}
-            <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-3">
-              {!loading && user && (
-                <>
-                  <Link
-                    href={isPsi ? "/admin/dashboard" : "/dashboard"}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="w-full bg-[#8A6046] text-white text-center py-4 rounded-xl font-bold uppercase tracking-widest"
-                  >
-                    Ir al Dashboard
-                  </Link>
-                  <button
-                    onClick={async () => {
-                      await createClient().auth.signOut();
-                      window.location.reload();
-                    }}
-                    className="w-full bg-red-50 text-red-600 py-4 rounded-xl font-bold uppercase tracking-widest"
-                  >
-                    Cerrar Sesión
-                  </button>
-                </>
-              )}
-
-            </div>
+            {!loading && user && (
+              <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-3">
+                <Link
+                  href={isPsi ? "/admin/dashboard" : "/dashboard"}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-center gap-3 px-6 py-4 bg-[#8A6046] text-white font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-[#8A6046]/20"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={async () => {
+                    await createClient().auth.signOut();
+                    window.location.reload();
+                  }}
+                  className="flex justify-center items-center gap-3 px-6 py-4 bg-red-50 text-red-600 border border-red-100 font-bold uppercase tracking-widest rounded-xl"
+                >
+                  Salir
+                </button>
+              </div>
+            )}
           </div>
         </motion.div>
       </nav>
