@@ -56,22 +56,31 @@ export async function signup(formData: FormData) {
   };
 
   const { data: signUpData, error } = await supabase.auth.signUp(data);
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://psicologajohanavillabon.com';
 
   if (error) {
     return { error: error.message };
   }
 
-  // Send welcome email
+  // Send welcome email (app level notification)
   if (signUpData.user?.email) {
     try {
       const { sendEmail } = await import("@/lib/email/send");
       await sendEmail("welcome", signUpData.user.email, {
         patientName: fullName,
-        loginUrl: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://psicologajohanavillabon.com'}/login`
+        loginUrl: `${siteUrl}/login`
       });
     } catch (emailErr) {
       console.error("Welcome email failed:", emailErr);
     }
+  }
+
+  // If Supabase is configured to require email confirmation, session will be null
+  if (!signUpData.session) {
+    return { 
+      success: true, 
+      message: "¡Cuenta creada con éxito! Por favor verifica tu correo electrónico para confirmar tu cuenta y poder iniciar sesión." 
+    };
   }
 
   revalidatePath("/", "layout");

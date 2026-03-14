@@ -15,6 +15,7 @@ function LoginFormParams() {
     () => searchParams.get("mode") !== "signup",
   );
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,10 +27,14 @@ function LoginFormParams() {
     const action = isLogin ? login : signup;
 
     const result = await action(formData);
+    setLoading(false);
 
     if (result?.error) {
       setError(result.error);
-      setLoading(false);
+    } else if (result?.success) {
+      setError(null);
+      setSuccessMessage(result.message);
+      setIsLogin(true); // Switch to login view
     }
   };
 
@@ -88,6 +93,11 @@ function LoginFormParams() {
           {error && (
             <div className="mb-6 p-4 rounded-xl bg-red-50 text-red-600 text-sm font-bold border border-red-100">
               {error}
+            </div>
+          )}
+          {successMessage && (
+            <div className="mb-6 p-4 rounded-xl bg-green-50 text-green-600 text-sm font-bold border border-green-100 italic">
+              ✨ {successMessage}
             </div>
           )}
 
@@ -298,7 +308,11 @@ function LoginFormParams() {
                 ¿Aún no tienes cuenta?{" "}
                 <button
                   type="button"
-                  onClick={() => setIsLogin(false)}
+                  onClick={() => {
+                    setIsLogin(false);
+                    setError(null);
+                    setSuccessMessage(null);
+                  }}
                   className="font-bold text-primary-600 hover:text-primary-500 hover:underline transition-all"
                 >
                   Regístrate aquí
@@ -309,7 +323,11 @@ function LoginFormParams() {
                 ¿Ya tienes una cuenta?{" "}
                 <button
                   type="button"
-                  onClick={() => setIsLogin(true)}
+                  onClick={() => {
+                    setIsLogin(true);
+                    setError(null);
+                    setSuccessMessage(null);
+                  }}
                   className="font-bold text-primary-600 hover:text-primary-500 hover:underline transition-all"
                 >
                   Inicia sesión
