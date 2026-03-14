@@ -29,11 +29,11 @@ function LoginFormParams() {
     const result = await action(formData);
     setLoading(false);
 
-    if (result?.error) {
-      setError(result.error);
-    } else if (result?.success) {
+    if (result && 'error' in result) {
+      setError(result.error as string);
+    } else if (result && 'success' in result) {
       setError(null);
-      setSuccessMessage(result.message);
+      setSuccessMessage((result as any).message);
       setIsLogin(true); // Switch to login view
     }
   };

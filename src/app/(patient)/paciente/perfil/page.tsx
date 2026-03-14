@@ -212,7 +212,7 @@ export default function MiPerfil() {
                 <h3 className="font-black text-red-900 dark:text-red-100 text-2xl tracking-tight leading-none mb-3">
                   Cerrar mi Cuenta
                 </h3>
-                <p className="text-lg font-black text-red-700 dark:text-red-300 max-w-xl leading-relaxed text-slate-900">
+                <p className="text-lg font-black text-red-700 dark:text-red-300 max-w-xl leading-relaxed">
                   Si cierras tu cuenta, ya no podrás acceder al portal. Tus
                   datos personales básicos serán eliminados.
                 </p>

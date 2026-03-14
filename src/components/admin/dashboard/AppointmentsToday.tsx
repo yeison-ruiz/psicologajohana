@@ -171,7 +171,7 @@ export function AppointmentsToday({
                               btn.innerHTML = originalContent;
                             }
                           }}
-                          className="flex items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2 text-xs font-bold text-primary-600 transition-all hover:bg-primary-50 active:scale-95 disabled:opacity-50 font-black"
+                          className="flex items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2 text-xs font-bold text-primary-600 transition-all hover:bg-primary-50 active:scale-95 disabled:opacity-50"
                         >
                           <Video size={14} />
                           Generar Link
