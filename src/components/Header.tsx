@@ -109,7 +109,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                 loading="eager"
                 sizes="(max-width: 768px) 150px, 220px"
                 className={`w-auto object-contain transition-all duration-500 ${
-                  isScrolled ? "h-[44px] md:h-[55px]" : "h-[60px] md:h-[70px]"
+                  isScrolled ? "h-[50px] md:h-[55px]" : "h-[68px] md:h-[70px]"
                 }`}
               />
             </Link>
@@ -308,24 +308,7 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                   </button>
                 </>
               )}
-              {!loading && !user && (
-                <div className="grid grid-cols-2 gap-3">
-                  <Link
-                    href="/login"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-center py-4 border-2 border-[#8A6046] text-[#8A6046] font-bold uppercase tracking-widest rounded-xl"
-                  >
-                    Entrar
-                  </Link>
-                  <Link
-                    href="/register"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-center py-4 bg-[#8A6046] text-white font-bold uppercase tracking-widest rounded-xl"
-                  >
-                    Unirse
-                  </Link>
-                </div>
-              )}
+
             </div>
           </div>
         </motion.div>
