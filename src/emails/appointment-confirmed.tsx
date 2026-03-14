@@ -39,7 +39,7 @@ export function AppointmentConfirmedEmail({
           ⚠️ <strong>Paso Obligatorio:</strong> Para habilitar el enlace de tu sesión, es necesario que realices primero tu <strong>Presesión IA</strong>. Haz clic en el siguiente botón para completarla:
         </Text>
         <Button
-          href="https://psicoconnect.online/paciente"
+          href="https://psicologajohanavillabon.com/dashboard"
           style={button}
         >
           Realizar Mi Presesión IA

@@ -33,7 +33,7 @@ export function SessionFinishedEmail({ patientName }: SessionFinishedEmailProps)
       </Text>
 
       <Section style={buttonContainer}>
-        <Button href="https://psicoconnect.online/dashboard" style={button}>
+        <Button href="https://psicologajohanavillabon.com/dashboard" style={button}>
           Ir a mi Dashboard de Paciente
         </Button>
       </Section>
