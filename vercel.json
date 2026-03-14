@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/expire-appointments",
-      "schedule": "0 * * * *"
+      "schedule": "0 13 * * *"
     },
     {
       "path": "/api/cron/reminders-24h",
@@ -10,11 +10,11 @@
     },
     {
       "path": "/api/cron/reminders-1h",
-      "schedule": "0 * * * *"
+      "schedule": "30 13 * * *"
     },
     {
       "path": "/api/cron/close-sessions",
-      "schedule": "*/30 * * * *"
+      "schedule": "45 13 * * *"
     },
     {
       "path": "/api/cron/cleanup-storage",
