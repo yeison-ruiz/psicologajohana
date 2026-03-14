@@ -16,7 +16,7 @@ import {
   MessageCircle,
   Menu,
   X,
-  User as UserIcon
+  ArrowRight
 } from "lucide-react";
 
 interface HeaderProps {
@@ -218,16 +218,15 @@ export default function Header({ activeSection = "hogar" }: HeaderProps) {
                 >
                   <motion.div
                     animate={{ 
-                      y: [0, -3, 0],
-                      scale: [1, 1.1, 1]
+                      x: [-4, 0, -4]
                     }}
                     transition={{ 
-                      duration: 2,
+                      duration: 1.5,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
                   >
-                    <UserIcon size={18} className="text-white" />
+                    <ArrowRight size={18} className="text-white" />
                   </motion.div>
                   <span>Entrar</span>
                 </Link>
