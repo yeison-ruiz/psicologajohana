@@ -6,14 +6,12 @@ export interface AppointmentConfirmedEmailProps {
   patientName: string;
   date: string;
   time: string;
-  meetLink: string;
 }
 
 export function AppointmentConfirmedEmail({
   patientName,
   date,
   time,
-  meetLink,
 }: AppointmentConfirmedEmailProps) {
   return (
     <BaseEmail previewText="Tu cita ha sido confirmada ✅">
@@ -38,22 +36,19 @@ export function AppointmentConfirmedEmail({
 
       <Section style={buttonContainer}>
         <Text style={instructionText}>
-          Para unirte a la sesión virtual, haz clic en el siguiente botón:
+          ⚠️ <strong>Paso Obligatorio:</strong> Para habilitar el enlace de tu sesión, es necesario que realices primero tu <strong>Presesión IA</strong>. Haz clic en el siguiente botón para completarla:
         </Text>
         <Button
-          href={meetLink}
+          href="https://psicoconnect.online/paciente"
           style={button}
         >
-          Unirme a Google Meet
+          Realizar Mi Presesión IA
         </Button>
-        <Text style={smallLink}>
-          O copia este enlace: {meetLink}
-        </Text>
       </Section>
 
       <Section style={footerNote}>
         <Text style={noteText}>
-          📌 <strong>Recomendación:</strong> Te sugerimos conectarte 5 minutos antes para verificar tu conexión y sonido. Si necesitas reprogramar, por favor avísanos con al menos 24 horas de antelación.
+          📌 <strong>Importante:</strong> Una vez completes la presesión, el botón para unirte a Google Meet se activará automáticamente en tu panel de &quot;Mis Citas&quot;. Te sugerimos realizarla con tiempo para evitar retrasos el día de tu sesión.
         </Text>
       </Section>
     </BaseEmail>
@@ -111,38 +106,34 @@ const buttonContainer = {
 };
 
 const instructionText = {
-  color: "#64748b",
-  fontSize: "14px",
-  marginBottom: "16px",
+  color: "#1e293b",
+  fontSize: "15px",
+  marginBottom: "20px",
+  lineHeight: "24px",
 };
 
 const button = {
   backgroundColor: "#9c7155",
   color: "#ffffff",
   padding: "16px 32px",
-  borderRadius: "12px",
+  borderRadius: "14px",
   textDecoration: "none",
   display: "inline-block",
-  fontWeight: "bold",
-  fontSize: "16px",
-  boxShadow: "0 4px 12px rgba(156, 113, 85, 0.2)",
-};
-
-const smallLink = {
-  color: "#94a3b8",
-  fontSize: "11px",
-  marginTop: "12px",
-  wordBreak: "break-all" as const,
+  fontWeight: "900",
+  fontSize: "17px",
+  boxShadow: "0 5px 15px rgba(156, 113, 85, 0.25)",
 };
 
 const footerNote = {
   marginTop: "40px",
-  padding: "20px",
-  borderTop: "1px solid #f1f5f9",
+  padding: "24px",
+  backgroundColor: "#fff7ed",
+  borderRadius: "16px",
+  border: "1px solid #ffedd5",
 };
 
 const noteText = {
-  color: "#64748b",
+  color: "#9a3412",
   fontSize: "14px",
   lineHeight: "22px",
   margin: "0",

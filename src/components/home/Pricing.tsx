@@ -31,10 +31,10 @@ export default function Pricing() {
             </span>
           </div>
           <h2
-            className="text-[#2b2b2b] text-[36px] md:text-[42px] font-bold leading-[1.2] max-w-[500px] mx-auto"
+            className="text-[#2b2b2b] text-[36px] md:text-[42px] font-bold leading-[1.2] max-w-[600px] mx-auto"
             style={{ fontFamily: "var(--font-raleway)" }}
           >
-            Precios simples, opciones flexibles, & nada oculto.
+            Inversión clara en tu bienestar, ahora con Análisis Pre-sesión IA.
           </h2>
         </div>
 
@@ -70,11 +70,12 @@ export default function Pricing() {
                 {[
                   "Diagnóstico y tratamiento",
                   "Autoestima, estrés, ansiedad",
-                  "Modalidad Presencial u Online",
+                  "Incluye Análisis Pre-sesión IA",
+                  "Atención 100% Online",
                 ].map((feature, i) => (
                   <li
                     key={i}
-                    className="flex items-center gap-3 text-[#555] text-[18px] font-bold"
+                    className="flex items-center gap-3 text-[#555] text-[17px]"
                   >
                     <svg
                       className="w-[20px] h-[20px] text-[#8A6046] shrink-0"
@@ -133,12 +134,13 @@ export default function Pricing() {
               <ul className="space-y-5 mb-14 flex-1">
                 {[
                   "Terapia de Pareja o Familia",
+                  "Análisis Pre-sesión IA Individual",
                   "Mediación y diálogo guiado",
                   "Orientación y pautas de crianza",
                 ].map((feature, i) => (
                   <li
                     key={i}
-                    className="flex items-center gap-3 text-[#666] text-[16px]"
+                    className="flex items-center gap-3 text-[#555] text-[17px]"
                   >
                     <svg
                       className="w-[18px] h-[18px] text-[#8A6046] shrink-0"
@@ -199,7 +201,7 @@ export default function Pricing() {
                 ].map((feature, i) => (
                   <li
                     key={i}
-                    className="flex items-center gap-3 text-[#666] text-[16px]"
+                    className="flex items-center gap-3 text-[#555] text-[17px]"
                   >
                     <svg
                       className="w-[18px] h-[18px] text-[#8A6046] shrink-0"

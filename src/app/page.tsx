@@ -36,6 +36,7 @@ export default function LandingPage() {
     profiles?: { full_name: string } | null;
   }
   const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
 
   useEffect(() => {
     const supabase = createClient();
@@ -49,13 +50,17 @@ export default function LandingPage() {
       setTimeout(() => setLoadVideo(true), 1200);
 
       // Fetch recent posts
-      const { data: posts } = await supabase
-        .from("blog_posts")
-        .select("*, profiles!blog_posts_author_id_fkey(full_name)")
-        .eq("published", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
-      if (posts) setRecentPosts(posts as unknown as BlogPost[]);
+      try {
+        const { data: posts } = await supabase
+          .from("blog_posts")
+          .select("*, profiles!blog_posts_author_id_fkey(full_name)")
+          .eq("published", true)
+          .order("created_at", { ascending: false })
+          .limit(3);
+        if (posts) setRecentPosts(posts as unknown as BlogPost[]);
+      } finally {
+        setLoadingPosts(false);
+      }
     }
     init();
     const {
@@ -167,7 +172,7 @@ export default function LandingPage() {
       <MeetingSection />
       <Pricing />
       <Testimonials />
-      <BlogSection recentPosts={recentPosts} />
+      <BlogSection recentPosts={recentPosts} isLoading={loadingPosts} />
       <FinalCTA />
 
       <Footer />

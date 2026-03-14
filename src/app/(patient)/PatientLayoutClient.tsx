@@ -159,9 +159,6 @@ export default function PatientLayoutClient({
                 <p className="text-base font-bold text-slate-900 dark:text-white">
                   {profile?.full_name || "Cargando..."}
                 </p>
-                <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  ID: #{profile?.id?.substring(0, 5) || "00000"}
-                </p>
               </div>
             </div>
           </div>

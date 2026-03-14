@@ -11,6 +11,14 @@ import { es } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { Appointment } from "@/store/adminDashboardStore";
 
+const statusMap: Record<string, string> = {
+  CONFIRMED: "Confirmada",
+  DONE: "Finalizada",
+  NO_SHOW: "No asistió",
+  PENDING_APPROVAL: "Pendiente",
+  PENDING_PAYMENT: "Pendiente de Pago",
+};
+
 interface UpcomingSessionsProps {
   appointments: Appointment[];
 }
@@ -80,7 +88,7 @@ export function UpcomingSessions({ appointments }: UpcomingSessionsProps) {
                       : "bg-slate-100 text-slate-500 dark:bg-slate-800",
                   )}
                 >
-                    {appt.status}
+                    {statusMap[appt.status] || appt.status}
                 </span>
                 {appt.meet_link && (
                   <a

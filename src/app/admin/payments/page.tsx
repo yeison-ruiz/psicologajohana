@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import {
   ChevronLeft,
   Calendar,
-  CreditCard,
   Receipt,
   User,
   Clock,
   ArrowRight,
+  Menu,
 } from "lucide-react";
-import { Sidebar } from "@/components/admin/Sidebar";
+import { useUIStore } from "@/store/uiStore";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getPendingPayments } from "./actions";
@@ -35,6 +35,7 @@ interface Payment {
 }
 
 export default function PendingPayments() {
+  const { setAdminSidebarOpen } = useUIStore();
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -59,13 +60,17 @@ export default function PendingPayments() {
   }, []);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      <Sidebar />
-
+    <div className="flex h-full overflow-hidden bg-background">
       {/* Main Content */}
       <main className="flex flex-col flex-1 overflow-hidden bg-slate-50 dark:bg-slate-950">
         <header className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 px-6 py-4 bg-white dark:bg-slate-900 shrink-0">
           <div className="flex items-center gap-4">
+            <button
+               className="text-slate-500 md:hidden hover:text-slate-700 dark:text-slate-400 p-2"
+               onClick={() => setAdminSidebarOpen(true)}
+             >
+               <Menu className="w-6 h-6" />
+             </button>
             <Link
               href="/admin/dashboard"
               className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
@@ -73,7 +78,7 @@ export default function PendingPayments() {
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <h2 className="text-3xl font-black leading-tight text-slate-900 dark:text-white tracking-tight">
-              Pagos Pendientes de Revisión
+              Pagos Pendientes
             </h2>
           </div>
         </header>

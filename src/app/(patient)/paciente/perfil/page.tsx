@@ -200,43 +200,19 @@ export default function MiPerfil() {
 
         <hr className="border-slate-200 dark:border-slate-800" />
 
-        {/* Security and Privacy */}
+        {/* Account Deletion Only */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-3 tracking-tight">
-            <Lock className="w-7 h-7 text-primary-600" />
-            Privacidad y Datos
-          </h2>
-          <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col gap-6">
-            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between p-4 bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-800/20">
-              <div>
-                <h3 className="font-black text-blue-900 dark:text-blue-100 mb-2 text-xl tracking-tight leading-none">
-                  Exportar Tu Información
-                </h3>
-                <p className="text-lg font-black text-blue-700 dark:text-blue-300 leading-relaxed">
-                  Descarga una copia de todos los datos personales que hemos
-                  recopilado de ti.
-                </p>
-              </div>
-              <button
-                onClick={handleExport}
-                disabled={isExporting}
-                className="shrink-0 flex items-center gap-3 bg-white dark:bg-slate-700 border-2 border-blue-200 dark:border-blue-600 text-blue-700 dark:text-blue-200 hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-slate-600 font-black px-8 h-14 rounded-2xl transition-all text-lg shadow-sm"
-              >
-                <Download className="w-6 h-6" />
-                {isExporting ? "Generando JSON..." : "Exportar Datos"}
-              </button>
-            </div>
-
+          <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
             <div className="flex flex-col gap-6 p-6 bg-red-50/50 dark:bg-red-900/10 rounded-2xl border border-red-100 dark:border-red-800/20">
               <div className="flex flex-col gap-2">
                 <h3 className="font-black text-red-900 dark:text-red-100 text-2xl tracking-tight leading-none mb-3">
                   Cerrar mi Cuenta
                 </h3>
-                <p className="text-lg font-black text-red-700 dark:text-red-300 max-w-xl leading-relaxed">
+                <p className="text-lg font-black text-red-700 dark:text-red-300 max-w-xl leading-relaxed text-slate-900">
                   Si cierras tu cuenta, ya no podrás acceder al portal. Tus
                   datos personales básicos serán eliminados.
                 </p>
@@ -250,7 +226,7 @@ export default function MiPerfil() {
                   <input
                     onChange={(e) => setConfirmText(e.target.value)}
                     placeholder='Escribe "ELIMINAR MI CUENTA"'
-                    className="w-full h-14 px-5 text-lg rounded-2xl border-2 border-red-200 bg-white/50 dark:bg-slate-900/50 outline-none focus:ring-4 ring-red-500/10 focus:border-red-500 placeholder:text-red-200 transition-all font-black"
+                    className="w-full h-14 px-5 text-lg rounded-2xl border-2 border-red-200 bg-white/50 dark:bg-slate-900/50 outline-none focus:ring-4 ring-red-500/10 focus:border-red-500 placeholder:text-red-200 transition-all font-black text-slate-900"
                   />
                 </div>
                 <button

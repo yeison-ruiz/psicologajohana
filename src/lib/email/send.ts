@@ -6,6 +6,7 @@ import { WelcomeEmail, WelcomeEmailProps } from "@/emails/welcome-email";
 import { SessionReminderEmail, SessionReminderEmailProps } from "@/emails/session-reminder";
 import { PaymentReceivedPatientEmail, PaymentReceivedPatientEmailProps } from "@/emails/payment-received-patient";
 import { PaymentAlertAdminEmail, PaymentAlertAdminEmailProps } from "@/emails/payment-alert-admin";
+import { SessionFinishedEmail, SessionFinishedEmailProps } from "@/emails/session-finished";
 
 export type EmailTemplate = 
   | "appointment_confirmed" 
@@ -13,7 +14,8 @@ export type EmailTemplate =
   | "welcome" 
   | "session_reminder"
   | "payment_received_patient"
-  | "payment_alert_admin";
+  | "payment_alert_admin"
+  | "session_finished";
 
 const EMAIL_TEMPLATES: Record<
   EmailTemplate,
@@ -45,6 +47,10 @@ const EMAIL_TEMPLATES: Record<
   payment_alert_admin: {
     subject: (data: Record<string, unknown>) => `Nuevo pago por revisar de ${(data as { patientName: string }).patientName}`,
     component: (data: Record<string, unknown>) => PaymentAlertAdminEmail(data as unknown as PaymentAlertAdminEmailProps),
+  },
+  session_finished: {
+    subject: () => `¡Gracias por asistir a nuestra sesión! 🌿`,
+    component: (data: Record<string, unknown>) => SessionFinishedEmail(data as unknown as SessionFinishedEmailProps),
   },
 };
 

@@ -36,6 +36,7 @@ export async function getPatientAppointments() {
       status, 
       duration_minutes,
       meet_link,
+      pre_consultation_reports(id),
       availability_slots(session_type),
       payments (
         id, 
@@ -52,10 +53,12 @@ export async function getPatientAppointments() {
     return null;
   }
 
-  // Normalize status to uppercase to avoid case-sensitivity issues in comparisons
+  // Normalize data and ensure we return the report info clearly
   const normalizedData = (data as any[]).map((app) => ({
     ...app,
     status: app.status?.toUpperCase(),
+    session_type: app.availability_slots?.session_type || "Consulta",
+    has_report: app.pre_consultation_reports && app.pre_consultation_reports.length > 0,
     payments: app.payments?.map((p: any) => ({
       ...p,
       status: p.status?.toUpperCase(),

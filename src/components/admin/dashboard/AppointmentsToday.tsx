@@ -10,23 +10,35 @@ import {
   Sparkles 
 } from "lucide-react";
 import Link from "next/link";
-import { format, isPast } from "date-fns";
+import { format, isPast, isToday } from "date-fns";
 import { es } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { Appointment } from "@/store/adminDashboardStore";
+
+const statusMap: Record<string, string> = {
+  CONFIRMED: "Confirmada",
+  DONE: "Finalizada",
+  NO_SHOW: "No asistió",
+  PENDING_APPROVAL: "Pendiente",
+  PENDING_PAYMENT: "Pendiente de Pago",
+};
 
 interface AppointmentsTodayProps {
   appointments: Appointment[];
   onFinish: (appt: Appointment) => void;
   onNoShow: (apptId: string, patientId: string) => void;
   onViewReport: (appt: Appointment) => void;
+  title?: string;
+  showFullDate?: boolean;
 }
 
 export function AppointmentsToday({ 
   appointments, 
   onFinish, 
   onNoShow, 
-  onViewReport 
+  onViewReport,
+  title = "Agenda de Hoy",
+  showFullDate = false
 }: AppointmentsTodayProps) {
   return (
     <motion.div
@@ -38,7 +50,7 @@ export function AppointmentsToday({
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-            Agenda de Hoy
+            {title}
           </h3>
           <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">
             {format(new Date(), "d 'de' MMMM, yyyy", {
@@ -91,7 +103,12 @@ export function AppointmentsToday({
                 >
                   <div className="flex flex-col mb-4 sm:mb-0">
                     <p className="text-xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
-                      {format(apptTime, "hh:mm a")}{" "}
+                      {format(apptTime, "hh:mm a")}
+                      {(showFullDate || !isToday(apptTime)) && (
+                        <span className="text-primary-600 dark:text-primary-400 ml-2 text-sm uppercase">
+                        • {format(apptTime, "EEE d MMM", { locale: es })}
+                        </span>
+                      )}
                       <span className="text-slate-300 dark:text-slate-600 font-medium mx-1">
                         |
                       </span>{" "}
@@ -117,35 +134,64 @@ export function AppointmentsToday({
                                 : "bg-slate-100 text-slate-500 dark:bg-slate-800",
                         )}
                       >
-                        {appt.status}
+                        {statusMap[appt.status] || appt.status}
                       </span>
                     </div>
                   </div>
+
                   {appt.status === "CONFIRMED" && (
                     <div className="flex flex-wrap gap-2 mt-4 sm:mt-0 sm:ml-4">
-                      {appt.meet_link && (
+                      {appt.meet_link ? (
                         <a
                           href={appt.meet_link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 rounded-xl bg-primary-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:bg-primary-700 hover:-translate-y-0.5"
+                          className="flex items-center justify-center gap-2 rounded-xl bg-primary-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-primary-500/20 transition-all hover:bg-primary-700 active:scale-95"
                         >
-                          <Video className="w-4 h-4" /> Unirse
+                          <Video size={14} />
+                          Unirse
                         </a>
+                      ) : (
+                        <button
+                          onClick={async (e) => {
+                            const btn = e.currentTarget;
+                            btn.disabled = true;
+                            const originalContent = btn.innerHTML;
+                            btn.innerHTML = "Generando...";
+                            try {
+                              const { generateMeetLinkAction } = await import("@/app/admin/dashboard/actions");
+                              const res = await generateMeetLinkAction(appt.id);
+                              if (res.error) alert(res.error);
+                              else window.location.reload();
+                            } catch (err) {
+                              console.error(err);
+                              alert("Error al generar el link");
+                            } finally {
+                              btn.disabled = false;
+                              btn.innerHTML = originalContent;
+                            }
+                          }}
+                          className="flex items-center justify-center gap-2 rounded-xl border border-primary-200 bg-white px-4 py-2 text-xs font-bold text-primary-600 transition-all hover:bg-primary-50 active:scale-95 disabled:opacity-50 font-black"
+                        >
+                          <Video size={14} />
+                          Generar Link
+                        </button>
                       )}
+
                       <button
                         onClick={() => onFinish(appt)}
                         className="flex items-center justify-center gap-2 rounded-xl border-2 border-emerald-500/20 bg-emerald-50 dark:bg-emerald-900/10 px-4 py-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all active:scale-95"
                       >
-                        <CheckCircle className="w-4 h-4" />{" "}
-                        Finalizar
+                        <CheckCircle className="w-4 h-4" /> Finalizar
                       </button>
+
                       <button
                         onClick={() => onNoShow(appt.id, appt.patient_id)}
                         className="flex items-center justify-center gap-2 rounded-xl border-2 border-slate-200 bg-white dark:bg-slate-800 px-4 py-2 text-xs font-bold text-slate-500 hover:border-red-200 hover:bg-red-50 hover:text-red-600 transition-all active:scale-95"
                       >
                         <CalendarX className="w-4 h-4" /> No asistió
                       </button>
+
                       {appt.pre_consultation_report && (
                         <button
                           onClick={() => onViewReport(appt)}

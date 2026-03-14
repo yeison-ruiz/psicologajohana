@@ -18,9 +18,32 @@ interface Post {
 
 interface BlogSectionProps {
   recentPosts: Post[];
+  isLoading?: boolean;
 }
 
-export default function BlogSection({ recentPosts }: BlogSectionProps) {
+export function BlogSkeleton() {
+  return (
+    <div className="grid md:grid-cols-3 gap-8">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="flex flex-col h-full opacity-60">
+          <div className="relative h-[250px] w-full overflow-hidden rounded-t-md bg-slate-200 animate-pulse shrink-0" />
+          <div className="bg-white p-8 rounded-b-md shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex-1 flex flex-col relative -mt-6 mx-4 z-10">
+            <div className="h-4 w-20 bg-slate-200 animate-pulse mb-3 rounded" />
+            <div className="h-8 w-full bg-slate-200 animate-pulse mb-4 rounded" />
+            <div className="h-4 w-full bg-slate-200 animate-pulse mb-2 rounded" />
+            <div className="h-4 w-2/3 bg-slate-200 animate-pulse mb-6 rounded" />
+            <div className="flex items-center gap-3 mt-auto">
+              <div className="w-8 h-8 rounded-full bg-slate-200 animate-pulse" />
+              <div className="h-4 w-24 bg-slate-200 animate-pulse rounded" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function BlogSection({ recentPosts, isLoading = false }: BlogSectionProps) {
   return (
     <section className="py-24 relative overflow-hidden bg-[#FAF9F6]" id="blog">
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
@@ -63,9 +86,12 @@ export default function BlogSection({ recentPosts }: BlogSectionProps) {
         </div>
 
         {/* Blog Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {recentPosts.length > 0 ? (
-            recentPosts.map((post) => (
+        {isLoading ? (
+          <BlogSkeleton />
+        ) : (
+          <div className="grid md:grid-cols-3 gap-8">
+            {recentPosts.length > 0 ? (
+              recentPosts.map((post) => (
               <Link
                 href={`/blog/${post.slug}`}
                 key={post.id}
@@ -244,8 +270,9 @@ export default function BlogSection({ recentPosts }: BlogSectionProps) {
                 </div>
               </div>
             </>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

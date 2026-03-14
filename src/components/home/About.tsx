@@ -132,11 +132,11 @@ export default function About() {
                 </p>
                 <p className="text-[1.3rem] text-[#555]">
                   <span className="font-bold text-[#2b2b2b]">
-                    Psicóloga Johana Villabón
+                    Psicóloga Profesional
                   </span>{" "}
                   –{" "}
                   <span className="text-[#8A6046] underline underline-offset-2">
-                    Psicóloga
+                    Especialista en Salud Mental
                   </span>
                 </p>
               </div>

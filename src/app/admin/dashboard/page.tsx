@@ -1,10 +1,10 @@
 "use client";
 
 import { AnimatePresence } from "framer-motion";
-import { Loader2 } from "lucide-react";
-import { Sidebar } from "@/components/admin/Sidebar";
+import { useUIStore } from "@/store/uiStore";
 import PreConsultationReportModal from "@/components/admin/PreConsultationReportModal";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval } from "date-fns";
 import { createClient } from "@/utils/supabase/client";
 import {
   approvePayment,
@@ -22,6 +22,7 @@ import { PendingApprovals } from "@/components/admin/dashboard/PendingApprovals"
 import { WeeklyChart } from "@/components/admin/dashboard/WeeklyChart";
 import { DailyTip } from "@/components/admin/dashboard/DailyTip";
 import { FinishSessionModal } from "@/components/admin/dashboard/FinishSessionModal";
+import { AdminDashboardSkeleton } from "@/components/admin/dashboard/AdminDashboardSkeleton";
 
 const TIPS = [
   {
@@ -56,6 +57,7 @@ const TIPS = [
 
 export default function AdminDashboard() {
   const {
+    allAppointments,
     todayAppointments,
     upcomingAppointments,
     pendingPayments,
@@ -78,11 +80,30 @@ export default function AdminDashboard() {
   const [sessionNotes, setSessionNotes] = useState("");
   const [isFinishing, setIsFinishing] = useState(false);
 
-  const [, setSidebarOpen] = useState(false);
+  const { setAdminSidebarOpen } = useUIStore();
   const [viewingReportAppt, setViewingReportAppt] =
     useState<Appointment | null>(null);
 
   const [dailyTip, setDailyTip] = useState(TIPS[0]);
+  const [activeTab, setActiveTab] = useState<'day' | 'week' | 'month'>('day');
+
+  const filteredAppointments = useMemo(() => {
+    const now = new Date();
+    if (activeTab === 'day') {
+      return todayAppointments;
+    }
+    if (activeTab === 'week') {
+      const start = startOfWeek(now, { weekStartsOn: 1 });
+      const end = endOfWeek(now, { weekStartsOn: 1 });
+      return allAppointments.filter(a => isWithinInterval(new Date(a.start_at), { start, end }));
+    }
+    if (activeTab === 'month') {
+      const start = startOfMonth(now);
+      const end = endOfMonth(now);
+      return allAppointments.filter(a => isWithinInterval(new Date(a.start_at), { start, end }));
+    }
+    return todayAppointments;
+  }, [activeTab, todayAppointments, allAppointments]);
 
   const loadProfile = useCallback(async () => {
     const supabase = createClient();
@@ -152,25 +173,16 @@ export default function AdminDashboard() {
   };
 
   if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
-          <p className="text-sm text-slate-500">Cargando dashboard...</p>
-        </div>
-      </div>
-    );
+    return <AdminDashboardSkeleton />;
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      <Sidebar />
-
+    <div className="flex h-full overflow-hidden bg-background">
       <main className="flex flex-1 flex-col overflow-hidden bg-background">
         <DashboardHeader 
           profile={profile} 
           pendingPaymentsCount={stats.pendingPayments} 
-          onOpenSidebar={() => setSidebarOpen(true)} 
+          onOpenSidebar={() => setAdminSidebarOpen(true)} 
         />
 
         <div className="flex-1 overflow-y-auto p-4 md:p-8">
@@ -179,12 +191,35 @@ export default function AdminDashboard() {
 
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="flex flex-col gap-8 lg:col-span-2">
-                <AppointmentsToday 
-                  appointments={todayAppointments}
-                  onFinish={(appt) => setFinishingAppt(appt)}
-                  onNoShow={handleMarkNoShow}
-                  onViewReport={(appt) => setViewingReportAppt(appt)}
-                />
+                <div className="flex flex-col gap-6">
+                  <div className="flex bg-slate-100 p-1 rounded-2xl w-fit dark:bg-slate-800">
+                    {[
+                      { id: 'day', label: 'Hoy' },
+                      { id: 'week', label: 'Semana' },
+                      { id: 'month', label: 'Mes' }
+                    ].map((tab) => (
+                      <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id as 'day' | 'week' | 'month')}
+                        className={`px-6 py-2 rounded-xl text-sm font-black transition-all ${
+                          activeTab === tab.id 
+                            ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white' 
+                            : 'text-slate-500 hover:text-slate-700 dark:text-slate-400'
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <AppointmentsToday 
+                    appointments={filteredAppointments}
+                    onFinish={(appt) => setFinishingAppt(appt)}
+                    onNoShow={handleMarkNoShow}
+                    onViewReport={(appt) => setViewingReportAppt(appt)}
+                    title={activeTab === 'day' ? 'Agenda de Hoy' : activeTab === 'week' ? 'Agenda de la Semana' : 'Agenda del Mes'}
+                  />
+                </div>
 
                 <UpcomingSessions 
                   appointments={upcomingAppointments} 

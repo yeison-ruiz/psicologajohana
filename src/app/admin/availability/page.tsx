@@ -10,8 +10,9 @@ import {
   Save,
   X,
   Plus,
+  Menu,
 } from "lucide-react";
-import { Sidebar } from "@/components/admin/Sidebar";
+import { useUIStore } from "@/store/uiStore";
 import { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -118,6 +119,7 @@ function PresetBlockItem({ preset }: { preset: PresetBlock }) {
 export default function AvailabilityPage() {
   const { slots, fetchSlots, addSlot, removeSlot, presets, loading } =
     useAdminAvailabilityStore();
+  const { setAdminSidebarOpen } = useUIStore();
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -221,8 +223,13 @@ export default function AvailabilityPage() {
   }));
 
   return (
-    <div className="flex xl:flex-row flex-col h-screen overflow-hidden bg-slate-50">
-      <Sidebar />
+    <div className="flex xl:flex-row flex-col h-full overflow-hidden bg-slate-50 relative">
+      <button 
+        onClick={() => setAdminSidebarOpen(true)}
+        className="fixed top-4 left-4 z-30 p-2 bg-white rounded-xl shadow-md md:hidden border border-slate-200"
+      >
+        <Menu className="w-6 h-6 text-slate-600" />
+      </button>
 
       <style jsx global>{`
         /* FullCalendar Google Style Overrides */

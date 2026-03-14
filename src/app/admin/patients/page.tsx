@@ -6,8 +6,9 @@ import {
   Users, 
   ChevronRight, 
   Filter, 
+  Menu,
 } from "lucide-react";
-import { Sidebar } from "@/components/admin/Sidebar";
+import { useUIStore } from "@/store/uiStore";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -22,6 +23,7 @@ interface Patient {
 }
 
 export default function AdminPatientsList() {
+  const { setAdminSidebarOpen } = useUIStore();
   const [patients, setPatients] = useState<Patient[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
@@ -56,23 +58,29 @@ export default function AdminPatientsList() {
   );
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      <Sidebar />
-
+    <div className="flex h-full overflow-hidden bg-background">
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-50 dark:bg-slate-950/20">
-        {/* Simplified Header for Search/Profile */}
+        {/* Header for Search/Profile */}
         <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shrink-0">
-          <div className="flex-1 max-w-xl">
-             <div className="flex items-center rounded-xl bg-slate-100 dark:bg-slate-800 px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary-500/50 transition-all">
-                <Search className="w-5 h-5 text-slate-500" />
-                <input
-                  className="flex-1 bg-transparent border-none text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-0 placeholder:text-slate-400 px-3 text-sm font-bold"
-                  placeholder="Buscar pacientes..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
+          <div className="flex items-center gap-4 flex-1">
+             <button
+               className="text-slate-500 md:hidden hover:text-slate-700 dark:text-slate-400 p-2"
+               onClick={() => setAdminSidebarOpen(true)}
+             >
+               <Menu className="w-6 h-6" />
+             </button>
+             <div className="flex-1 max-w-xl">
+               <div className="flex items-center rounded-xl bg-slate-100 dark:bg-slate-800 px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary-500/50 transition-all">
+                  <Search className="w-5 h-5 text-slate-500" />
+                  <input
+                    className="flex-1 bg-transparent border-none text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-0 placeholder:text-slate-400 px-3 text-sm font-bold"
+                    placeholder="Buscar pacientes..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+             </div>
           </div>
           <div className="flex items-center gap-4">
             <button className="flex items-center justify-center rounded-xl size-11 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors border border-transparent hover:border-slate-200">

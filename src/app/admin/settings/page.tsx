@@ -3,18 +3,20 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { motion } from "framer-motion";
-import {
-  Save,
-  DollarSign,
-  Smartphone,
-  ExternalLink,
-  CheckCircle2,
+import { 
+  Save, 
+  DollarSign, 
+  Smartphone, 
+  ExternalLink, 
+  CheckCircle2, 
   AlertCircle,
+  Menu
 } from "lucide-react";
-import { Sidebar } from "@/components/admin/Sidebar";
+import { useUIStore } from "@/store/uiStore";
 import { cn } from "@/lib/utils";
 
 export default function SettingsPage() {
+  const { setAdminSidebarOpen } = useUIStore();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [nequiNumber, setNequiNumber] = useState("");
@@ -109,16 +111,22 @@ export default function SettingsPage() {
   if (loading) return <div className="p-8">Cargando...</div>;
 
   return (
-    <div className="flex h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden">
-      <Sidebar />
-
+    <div className="flex h-full bg-slate-50 dark:bg-slate-950 overflow-hidden">
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-12 flex flex-col gap-8">
-        <header className="mb-4">
-          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-            Configuración
-          </h1>
-          <p className="text-slate-600 dark:text-slate-300 mt-2 font-bold text-lg">
+        <header className="mb-4 flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <button
+               className="text-slate-500 md:hidden hover:text-slate-700 dark:text-slate-400 p-2"
+               onClick={() => setAdminSidebarOpen(true)}
+             >
+               <Menu className="w-6 h-6" />
+             </button>
+            <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+              Configuración
+            </h1>
+          </div>
+          <p className="text-slate-600 dark:text-slate-300 font-bold text-lg">
             Gestiona tu cuenta, métodos de pago y conexión con Google Calendar.
           </p>
         </header>

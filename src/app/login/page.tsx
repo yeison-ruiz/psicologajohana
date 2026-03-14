@@ -59,27 +59,17 @@ function LoginFormParams() {
       <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-blue-100/50 mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-        <Link href="/" className="flex justify-center items-center gap-4 group">
+        <Link href="/" className="flex justify-center items-center group">
           <div className="relative">
-            <NextImage
+            <img
               src="/logo.png"
               alt="Logo"
-              width={150}
-              height={150}
               className="h-20 w-auto object-contain transition-transform group-hover:scale-105"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="text-2xl font-black text-slate-900 tracking-tighter leading-none">
-              Psicóloga Johana Villabón
-            </span>
-            <span className="text-[10px] font-bold text-primary-600 uppercase tracking-[0.25em] mt-1">
-              Centro Psicológico
-            </span>
-          </div>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-black tracking-tight text-slate-900">
-          {isLogin ? "Bienvenido de nuevo" : "Crea tu cuenta"}
+          {isLogin ? "Tu espacio de bienestar" : "Crea tu cuenta"}
         </h2>
         <p className="mt-2 text-center text-sm text-slate-600 font-medium">
           {isLogin

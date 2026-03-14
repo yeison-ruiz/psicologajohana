@@ -12,6 +12,7 @@ import { ActiveAppointmentCard } from "@/components/patient/dashboard/ActiveAppo
 import { AppointmentTimeline } from "@/components/patient/dashboard/AppointmentTimeline";
 import { QuickActions } from "@/components/patient/dashboard/QuickActions";
 import { AppointmentList } from "@/components/patient/dashboard/AppointmentList";
+import { PatientDashboardSkeleton } from "@/components/patient/dashboard/DashboardSkeleton";
 
 interface PatientAppointment {
   id: string;
@@ -140,11 +141,7 @@ export default function PatientDashboard() {
   }, [appointments]);
 
   if (loading) {
-    return (
-      <div className="flex h-screen w-full items-center justify-center bg-slate-50 dark:bg-slate-950">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-      </div>
-    );
+    return <PatientDashboardSkeleton />;
   }
 
   return (

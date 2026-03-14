@@ -224,12 +224,16 @@ export async function approvePayment(paymentId: string) {
                   .eq("id", payment.appointment_id);
               }
             }
-          } catch (error) {
+          } catch (error: any) {
             console.error("Failed to create Google Meet session:", error);
+            return {
+              success: true,
+              warning: "Pago aprobado, pero hubo un error con Google Meet: " + (error.message || "Verifique su conexión de Google en Configuración.")
+            };
           }
         }
       }
-      
+
       // 2. Send confirmation email
       const { data: ptData } = await supabaseAdmin
         .from("profiles")
@@ -238,14 +242,13 @@ export async function approvePayment(paymentId: string) {
         .single();
 
       if (ptData?.email) {
-        const dateStr = new Date(fullAppt.start_at).toLocaleDateString("es-CO", { weekday:"long", month:"long", day:"numeric" });
-        const timeStr = new Date(fullAppt.start_at).toLocaleTimeString("es-CO", { hour:"2-digit", minute:"2-digit" });
-        
+        const dateStr = new Date(fullAppt.start_at).toLocaleDateString("es-CO", { weekday: "long", month: "long", day: "numeric" });
+        const timeStr = new Date(fullAppt.start_at).toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit" });
+
         await sendEmail("appointment_confirmed", ptData.email, {
           patientName: ptData.full_name || "Paciente",
           date: dateStr,
-          time: timeStr,
-          meetLink: meetLink || "https://psicologajohanavillabon.com/paciente/mis-citas"
+          time: timeStr
         });
       }
     }
@@ -253,7 +256,7 @@ export async function approvePayment(paymentId: string) {
     revalidatePath(`/admin/payments/${paymentId}`);
     revalidatePath(`/admin/payments`);
     revalidatePath(`/admin/dashboard`);
-    
+
     return { success: true };
   } catch (err: any) {
     console.error("ADMIN_APPROVE_CRASH:", err);

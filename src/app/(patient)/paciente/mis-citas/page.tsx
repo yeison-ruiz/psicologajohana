@@ -13,9 +13,12 @@ import {
   FileText,
   AlertCircle,
   UploadCloud,
+  Sparkles,
 } from "lucide-react";
 import { getPatientAppointments } from "./actions";
 import { createClient } from "@/utils/supabase/client";
+import PreConsultationChat from "@/components/PreConsultationChat";
+import { AnimatePresence } from "framer-motion";
 
 const STEPS = [
   {
@@ -51,23 +54,84 @@ const STEPS = [
   },
 ];
 
-function JoinSessionButton({
+  function JoinSessionButton({
   meetLink,
+  hasReport,
+  onPrepare,
 }: {
   meetLink: string | null;
+  hasReport: boolean;
+  onPrepare: () => void;
 }) {
   if (!meetLink) return null;
 
-  // Show the button as soon as it exists for confirmed sessions
+  if (!hasReport) {
+    return (
+      <div className="flex flex-col items-center gap-6 w-full mt-4">
+        {/* Advanced Warning Card */}
+        <div className="relative w-full overflow-hidden bg-linear-to-b from-amber-50/80 to-white dark:from-amber-950/20 dark:to-slate-900 border-2 border-dashed border-amber-200 dark:border-amber-800/40 p-8 sm:p-10 rounded-[2.5rem] text-center shadow-xl shadow-amber-500/5">
+          {/* Subtle Background Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-amber-400/10 blur-3xl -z-10" />
+          
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-100 dark:bg-amber-900/40 rounded-2xl mb-5 shadow-sm">
+            <AlertCircle className="w-9 h-9 text-amber-600 animate-pulse" />
+          </div>
+          
+          <h4 className="text-2xl font-black text-slate-900 dark:text-white mb-3 tracking-tight">Preparación Requerida</h4>
+          <p className="text-base font-bold text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-8 leading-relaxed">
+            Tu psicóloga necesita el reporte previo para brindarte la mejor atención. El acceso a la sesión se habilitará al completar este paso.
+          </p>
+          
+          <button
+            onClick={onPrepare}
+            className="group relative inline-flex items-center justify-center gap-4 px-12 py-5 bg-linear-to-br from-primary-600 via-primary-600 to-primary-700 text-white font-black rounded-2xl shadow-2xl shadow-primary-600/30 transition-all hover:scale-[1.03] active:scale-[0.97] overflow-hidden"
+          >
+            {/* Shimmer Effect */}
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]" />
+            
+            <div className="p-1.5 bg-white/20 rounded-lg group-hover:rotate-12 transition-transform">
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <span className="text-lg tracking-tight">Completar Preparación Ahora</span>
+          </button>
+        </div>
+        
+        {/* Disabled Meeting Button */}
+        <div className="relative w-full group/disabled">
+          <button
+            disabled
+            className="flex items-center justify-center gap-4 w-full sm:w-auto mx-auto px-12 py-5 bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 font-black rounded-3xl cursor-not-allowed border-2 border-slate-200 dark:border-slate-700 text-xl grayscale opacity-70 transition-all"
+          >
+            <Video className="w-8 h-8 opacity-40" />
+            Unirme a la sesión ahora
+          </button>
+          <div className="mt-4 text-center">
+            <span className="text-xs uppercase tracking-[0.2em] font-black text-amber-600 animate-pulse">
+              Candado de Seguridad Activo
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <a
       href={meetLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="mt-4 flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-2xl shadow-xl shadow-emerald-500/20 transition-all active:scale-95 text-lg"
+      className="group relative overflow-hidden flex items-center justify-center gap-5 w-full sm:w-auto px-16 py-6 bg-linear-to-br from-emerald-500 via-emerald-600 to-teal-700 text-white font-black rounded-3xl shadow-2xl shadow-emerald-500/30 transition-all hover:scale-[1.03] active:scale-[0.97] text-2xl tracking-tighter border border-emerald-400/20"
     >
-      <Video className="w-6 h-6" />
-      Unirme a la sesión ahora
+      {/* Background Watermark */}
+      <Video className="absolute -right-6 -bottom-6 w-32 h-32 text-white/10 -rotate-12 pointer-events-none transition-transform duration-700 group-hover:scale-125 group-hover:-rotate-6" />
+      
+      {/* Shine Effect */}
+      <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+      
+      <div className="relative flex items-center gap-4">
+        <Video className="w-8 h-8 animate-bounce-subtle drop-shadow-md" />
+        <span>Unirme a la sesión ahora</span>
+      </div>
     </a>
   );
 }
@@ -88,6 +152,9 @@ interface Appointment {
   status: string;
   duration_minutes: number;
   meet_link: string | null;
+  pre_consultation_reports: { id: string }[];
+  has_report: boolean;
+  session_type: string;
   payments: {
     id: string;
     amount_expected: number;
@@ -96,9 +163,13 @@ interface Appointment {
   }[];
 }
 
+
 export default function MisCitasPage() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState<{ full_name: string } | null>(null);
+  const [showAIChat, setShowAIChat] = useState(false);
+  const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
 
   // Active means it's coming up OR it's a confirmed session that just happened
   const activeAppointments = useMemo(() => {
@@ -109,17 +180,11 @@ export default function MisCitasPage() {
         
         const appointmentDate = new Date(a.start_at);
         const now = new Date();
+        const twoHoursAgo = new Date(now.getTime() - 1000 * 60 * 60 * 2);
         
-        if (["PENDING_PAYMENT", "PENDING_APPROVAL"].includes(a.status)) {
-          return appointmentDate >= now;
-        }
-        
-        if (a.status === "CONFIRMED") {
-          const twoHoursAgo = new Date(now.getTime() - 1000 * 60 * 60 * 2);
-          return appointmentDate >= twoHoursAgo;
-        }
-        
-        return true;
+        // Show if date is in the future OR if it started less than 2 hours ago
+        // This prevents appointments from disappearing during the session time
+        return appointmentDate >= twoHoursAgo;
       })
       .sort((a, b) => new Date(a.start_at).getTime() - new Date(b.start_at).getTime());
   }, [appointments]);
@@ -133,22 +198,61 @@ export default function MisCitasPage() {
         
         const appointmentDate = new Date(a.start_at);
         const now = new Date();
+        const twoHoursAgo = new Date(now.getTime() - 1000 * 60 * 60 * 2);
 
-        if (["PENDING_PAYMENT", "PENDING_APPROVAL", "CONFIRMED"].includes(a.status)) {
-          const twoHoursAgo = new Date(now.getTime() - 1000 * 60 * 60 * 2);
-          return appointmentDate < twoHoursAgo;
-        }
-        
-        return false;
+        // If it's one of the "active" statuses but it's older than 2 hours, move to history
+        return appointmentDate < twoHoursAgo;
       })
       .sort((a, b) => new Date(b.start_at).getTime() - new Date(a.start_at).getTime());
   }, [appointments]);
 
   useEffect(() => {
     async function load() {
-      const data = await getPatientAppointments();
-      if (data) {
-        setAppointments(data);
+      // 1. Get user profile
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data: prof } = await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("id", user.id)
+        .single();
+      if (prof) setProfile(prof);
+
+      // 2. Fetch appointments and reports in parallel for maximum speed and accuracy
+      const [appts, reportsData] = await Promise.all([
+        getPatientAppointments(),
+        supabase.from("pre_consultation_reports").select("appointment_id").eq("patient_id", user.id)
+      ]);
+
+      if (appts) {
+        const reportMap = new Set(reportsData.data?.map(r => r.appointment_id) || []);
+        
+        const finalAppts = (appts as any[]).map((app) => {
+          // Normalize status and payments
+          const normalizedApp = {
+            ...app,
+            status: app.status?.toUpperCase(),
+            session_type: app.availability_slots?.session_type || "Consulta",
+            payments: app.payments?.map((p: any) => ({
+              ...p,
+              status: p.status?.toUpperCase(),
+            })),
+          };
+
+          // Check if report exists via direct join OR via the explicit reports fetch
+          const hasReportJoin = Array.isArray(normalizedApp.pre_consultation_reports) 
+            ? normalizedApp.pre_consultation_reports.length > 0 
+            : !!normalizedApp.pre_consultation_reports;
+
+          return {
+            ...normalizedApp,
+            has_report: hasReportJoin || reportMap.has(normalizedApp.id)
+          };
+        });
+
+        setAppointments(finalAppts);
       }
       setLoading(false);
     }
@@ -327,7 +431,14 @@ export default function MisCitasPage() {
                   {/* Join Button rendered dynamically if status CONFIRMED */}
                   {app.status === "CONFIRMED" && (
                     <div className="mt-8 pt-8 border-t border-slate-100 flex justify-center sm:justify-start">
-                      <JoinSessionButton meetLink={app.meet_link} />
+                      <JoinSessionButton 
+                        meetLink={app.meet_link} 
+                        hasReport={app.has_report}
+                        onPrepare={() => {
+                          setSelectedAppId(app.id);
+                          setShowAIChat(true);
+                        }}
+                      />
                     </div>
                   )}
                 </div>
@@ -348,7 +459,7 @@ export default function MisCitasPage() {
             </p>
             <Link
               href="/book"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-primary-600 text-white text-base font-black rounded-2xl shadow-xl shadow-primary-500/30 hover:bg-primary-700 transition-all active:scale-95"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-primary-600 text-white text-base font-black rounded-2xl shadow-xl shadow-primary-500/30 hover:bg-primary-700 transition-all active:scale-95 border-b-4 border-primary-800"
             >
               Agendar Primera Cita
             </Link>
@@ -434,6 +545,31 @@ export default function MisCitasPage() {
           </div>
         )}
       </div>
+      
+      <AnimatePresence>
+        {showAIChat && selectedAppId && profile && (
+          <PreConsultationChat
+            appointmentId={selectedAppId}
+            patientName={profile.full_name}
+            onClose={async () => {
+              setShowAIChat(false);
+              // Reload appointments to update report status
+              const data = await getPatientAppointments();
+              if (data) setAppointments(data);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      <style jsx>{`
+        @keyframes bounce-subtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-2px); }
+        }
+        :global(.animate-bounce-subtle) {
+          animation: bounce-subtle 2s infinite ease-in-out;
+        }
+      `}</style>
     </div>
   );
 }

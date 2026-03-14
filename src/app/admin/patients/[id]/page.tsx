@@ -17,16 +17,12 @@ import {
   Paperclip,
   Search,
   Bell,
-  LayoutDashboard,
-  CalendarDays,
-  Settings,
-  LogOut,
-  Users,
   Save,
-  X
+  X,
+  Menu,
 } from "lucide-react";
 import Link from "next/link";
-import NextImage from "next/image";
+import { useUIStore } from "@/store/uiStore";
 
 import { useParams } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
@@ -155,9 +151,11 @@ export default function PatientClinicalRecord() {
   };
 
 
+  const { setAdminSidebarOpen } = useUIStore();
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-background">
+      <div className="flex items-center justify-center h-full bg-background">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     );
@@ -165,7 +163,7 @@ export default function PatientClinicalRecord() {
 
   if (!patientData.profile) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-background">
+      <div className="flex flex-col items-center justify-center h-full bg-background">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
           Paciente no encontrado
         </h2>
@@ -180,77 +178,18 @@ export default function PatientClinicalRecord() {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      {/* Navigation Sidebar */}
-      <aside className="fixed md:relative z-40 w-64 h-full flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-transform duration-300 md:translate-x-0 -translate-x-full">
-        <div className="flex h-40 items-center justify-center border-b border-slate-100 dark:border-slate-800 shrink-0">
-          <div className="flex flex-col items-center gap-2 group w-full">
-            <div className="relative">
-              <NextImage
-                src="/logo.png"
-                alt="Logo"
-                width={400}
-                height={400}
-                unoptimized
-                className="h-24 w-auto object-contain transition-transform group-hover:scale-105"
-              />
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <span className="text-lg font-black text-slate-900 dark:text-white leading-none tracking-tighter">
-                PSICOCONNECT
-              </span>
-              <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-[0.25em] mt-1.5 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-0.5 rounded-md">
-                Panel Profesional
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-1 flex-col gap-2 overflow-y-auto px-4 py-6">
-          <nav className="flex flex-col gap-1">
-            <Link
-              href="/admin/dashboard"
-              className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-lg font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
-            >
-              <LayoutDashboard className="w-6 h-6" /> Dashboard
-            </Link>
-            <Link
-              href="/admin/availability"
-              className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-lg font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
-            >
-              <CalendarDays className="w-6 h-6" /> Agenda Virtual
-            </Link>
-            <Link
-              href="/admin/patients"
-              className="flex items-center gap-3.5 rounded-xl bg-primary-50 dark:bg-primary-900/20 px-4 py-3.5 text-lg font-black text-primary-700 dark:text-primary-300 shadow-sm border border-primary-100 dark:border-primary-800/30"
-            >
-              <Users className="w-6 h-6" /> Pacientes
-            </Link>
-            <Link
-              href="/admin/payments"
-              className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-lg font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
-            >
-              <CreditCard className="w-6 h-6" /> Pagos Pendientes
-            </Link>
-            <Link
-              href="/admin/settings"
-              className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-lg font-bold text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
-            >
-              <Settings className="w-6 h-6" /> Configuración
-            </Link>
-          </nav>
-        </div>
-        <div className="border-t border-slate-100 dark:border-slate-800 p-4">
-           <Link href="/login" className="flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-lg font-bold text-slate-600 hover:bg-red-50 hover:text-red-600 transition-all">
-             <LogOut className="w-6 h-6" /> Cerrar Sesión
-           </Link>
-        </div>
-      </aside>
-
+    <div className="flex h-full overflow-hidden bg-background">
       <div className="flex-1 flex flex-col min-w-0 bg-slate-50 dark:bg-slate-950/20">
         {/* Simple Header for Search/Bell */}
-        <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shrink-0">
-          <div className="flex-1 max-w-xl">
+        <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shrink-0 gap-4">
+          <div className="flex items-center gap-4 flex-1">
+            <button
+               className="text-slate-500 md:hidden hover:text-slate-700 dark:text-slate-400 p-2"
+               onClick={() => setAdminSidebarOpen(true)}
+             >
+               <Menu className="w-6 h-6" />
+             </button>
+            <div className="flex-1 max-w-xl">
              <div className="flex items-center rounded-xl bg-slate-100 dark:bg-slate-800 px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary-500/50 transition-all">
                 <Search className="w-5 h-5 text-slate-500" />
                 <input
@@ -259,6 +198,7 @@ export default function PatientClinicalRecord() {
                   readOnly
                 />
               </div>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <button className="flex items-center justify-center rounded-xl size-11 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors border border-transparent hover:border-slate-200 relative">

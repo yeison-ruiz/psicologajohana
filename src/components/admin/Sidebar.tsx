@@ -16,7 +16,12 @@ import {
 import { createClient } from "@/utils/supabase/client";
 import { cn } from "@/lib/utils";
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const supabase = createClient();
 
@@ -54,7 +59,19 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="fixed md:relative z-40 w-72 h-full flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-transform duration-300 md:translate-x-0">
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm md:hidden transition-opacity duration-300"
+          onClick={onClose}
+        />
+      )}
+
+      <aside className={cn(
+        "fixed md:relative z-50 w-72 h-full flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 transition-transform duration-300",
+        isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      )}>
       <div className="flex h-48 items-center justify-center border-b border-slate-100 dark:border-slate-800 shrink-0">
         <div className="flex flex-col items-center gap-3 group w-full">
           <div className="relative h-28 flex items-center justify-center">
@@ -138,5 +155,6 @@ export function Sidebar() {
         </button>
       </div>
     </aside>
+    </>
   );
 }

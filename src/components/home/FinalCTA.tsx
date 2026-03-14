@@ -58,7 +58,7 @@ export default function FinalCTA() {
           </Link>
 
           <a
-            href="https://wa.me/573000000000"
+            href="https://wa.me/573219706495"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-12 py-[20px] border-2 border-white/40 text-white font-black text-[16px] uppercase tracking-[.15em] rounded-full hover:bg-white hover:text-[#8A6046] transition-all duration-300 shadow-lg"
