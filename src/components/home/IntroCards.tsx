@@ -11,12 +11,12 @@ export default function IntroCards() {
     <section className="relative z-20 max-w-[1400px] mx-auto px-6 -mt-[40px] md:-mt-[20px] pb-10">
       <div className="flex flex-col md:flex-row shadow-[0_10px_40px_rgba(0,0,0,0.08)] rounded-sm overflow-hidden">
         {/* Left Card */}
-        <div className="flex-3 bg-white px-12 py-12 flex flex-col justify-center">
-          <h2 className="text-[42px] font-black text-[#2b2b2b] leading-[1.1] mb-5 tracking-tight">
+        <div className="flex-3 bg-white px-6 py-10 md:px-12 md:py-12 flex flex-col justify-center">
+          <h2 className="text-[32px] md:text-[42px] font-black text-[#2b2b2b] leading-[1.2] md:leading-[1.1] mb-5 tracking-tight">
             Bienvenido a tu espacio de{" "}
             <span className="text-[#8A6046]">transformación.</span>
           </h2>
-          <p className="text-[1.25rem] text-[#6b6b6b] leading-relaxed mb-8 max-w-[500px]">
+          <p className="text-[1.1rem] md:text-[1.25rem] text-[#6b6b6b] leading-relaxed mb-8 max-w-[500px]">
             Soy la <strong>Psicóloga Johana Villabon</strong>. Mi misión es
             brindarte las herramientas necesarias para que puedas navegar tus
             emociones y construir la vida que deseas.
