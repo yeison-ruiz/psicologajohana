@@ -54,3 +54,4 @@ supabase/.temp/
 /*.sql
 /test-*.js
 /seed.js
+PORTFOLIO.md
