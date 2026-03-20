@@ -223,19 +223,21 @@ function LoginFormParams() {
                     className="font-medium text-slate-600 cursor-pointer"
                   >
                     Acepto los{" "}
-                    <a
-                      href="#"
+                    <Link
+                      href="/terminos"
+                      target="_blank"
                       className="font-bold text-primary-600 hover:text-primary-500"
                     >
                       términos de servicio
-                    </a>{" "}
+                    </Link>{" "}
                     y la{" "}
-                    <a
-                      href="#"
+                    <Link
+                      href="/privacy"
+                      target="_blank"
                       className="font-bold text-primary-600 hover:text-primary-500"
                     >
                       política de privacidad
-                    </a>
+                    </Link>
                     .
                   </label>
                 </div>
