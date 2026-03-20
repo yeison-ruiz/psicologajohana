@@ -56,7 +56,7 @@ export default function About() {
             </div>
 
             {/* Quote Card — absolute on desktop, static block on mobile */}
-            <div className="mt-5 lg:absolute lg:-bottom-8 lg:-right-24 bg-[#f8f3ee] px-5 py-5 lg:px-8 lg:py-8 w-full lg:w-[340px] shadow-lg lg:shadow-2xl border-l-[6px] border-[#8A6046] rounded-2xl lg:rounded-r-3xl z-20">
+            <div className="mt-5 lg:absolute lg:bottom-12 lg:-left-12 bg-white/90 backdrop-blur-md px-5 py-5 lg:px-8 lg:py-8 w-full lg:w-[360px] shadow-xl lg:shadow-[0_15px_45px_0_rgba(0,0,0,0.1)] border-l-[6px] border-[#8A6046] rounded-2xl z-20 transition-transform hover:scale-105 duration-300">
               <span
                 className="text-[#8A6046] text-[36px] lg:text-[44px] font-bold leading-none block mb-1"
                 style={{ fontFamily: "var(--font-playfair)" }}
