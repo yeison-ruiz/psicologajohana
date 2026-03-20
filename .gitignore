@@ -43,3 +43,14 @@ yarn-error.log*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Security and Workspace Cleanup
+.agent/
+supabase/.temp/
+/*.log
+/*.txt
+/*.html
+/*.tmp
+/*.sql
+/test-*.js
+/seed.js
