@@ -196,11 +196,25 @@ export default function Footer() {
 
       {/* Bottom Copyright */}
       <div className="border-t border-[#333]/60 pt-6 pb-0">
-        <div className="max-w-[1200px] mx-auto px-6 flex justify-center text-center items-center">
-          <div className="bg-[#2A2A2A]/50 text-[#888] text-[13px] py-3 px-8 rounded-md w-full sm:w-auto font-medium shadow-sm">
-            © 2026 - Psicóloga Johana Villabón. Todos los derechos reservados.
+          <div className="flex flex-col gap-4 items-center">
+            <div className="bg-[#2A2A2A]/50 text-[#888] text-[13px] py-3 px-8 rounded-md w-full sm:w-auto font-medium shadow-sm">
+              © 2026 - Psicóloga Johana Villabón. Todos los derechos reservados.
+            </div>
+            <div className="flex gap-6 mt-2">
+              <Link
+                href="/privacy"
+                className="text-[12px] font-bold text-[#666] hover:text-[#8A6046] transition-colors"
+              >
+                Política de Privacidad
+              </Link>
+              <Link
+                href="/privacy"
+                className="text-[12px] font-bold text-[#666] hover:text-[#8A6046] transition-colors"
+              >
+                Términos y Condiciones
+              </Link>
+            </div>
           </div>
-        </div>
       </div>
     </footer>
   );

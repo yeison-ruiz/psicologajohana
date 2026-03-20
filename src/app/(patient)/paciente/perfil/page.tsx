@@ -4,12 +4,16 @@ import { motion } from "framer-motion";
 import {
   User,
   Settings,
-  Lock,
   Download,
   Trash2,
   Phone,
   Mail,
+  Shield,
+  FileText,
+  Fingerprint,
 } from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { useState, useEffect, useTransition } from "react";
 import {
   getPatientProfile,
@@ -196,6 +200,68 @@ export default function MiPerfil() {
               </button>
             </div>
           </form>
+        </motion.div>
+
+        <hr className="border-slate-200 dark:border-slate-800" />
+
+        {/* Privacy & Security Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+        >
+          <h2 className="mb-6 flex items-center gap-3 text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
+            <Shield className="h-7 w-7 text-primary-600" />
+            Privacidad y Seguridad
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Privacy Policy Link Card */}
+            <Link
+              href="/privacy"
+              className="group flex flex-col gap-4 p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:border-primary-300 hover:shadow-md transition-all dark:border-slate-700 dark:bg-slate-800 lg:p-8"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-primary-50 flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 transition-colors">
+                <FileText className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" />
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">
+                  Política de Privacidad
+                </h3>
+                <p className="text-base text-slate-500 font-medium">
+                  Consulta cómo protegemos tus datos bajo la Ley 1581 de Colombia.
+                </p>
+              </div>
+            </Link>
+
+            {/* Data Export Card */}
+            <button
+              onClick={handleExport}
+              disabled={isExporting}
+              className="group text-left flex flex-col gap-4 p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:border-emerald-300 hover:shadow-md transition-all dark:border-slate-700 dark:bg-slate-800 lg:p-8"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center border border-emerald-100 group-hover:bg-emerald-600 transition-colors">
+                <Download className={cn("w-6 h-6 text-emerald-600 group-hover:text-white transition-colors", isExporting && "animate-bounce")} />
+              </div>
+              <div>
+                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">
+                  Exportar mis Datos
+                </h3>
+                <p className="text-base text-slate-500 font-medium">
+                  Descarga una copia de toda tu información personal registrada.
+                </p>
+              </div>
+            </button>
+
+            {/* AI Privacy Info Card */}
+            <div className="col-span-1 md:col-span-2 p-6 rounded-3xl border border-slate-100 bg-slate-50/50 flex items-start gap-4 dark:border-slate-700/50 dark:bg-slate-900/20">
+              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center border border-slate-200 shrink-0 shadow-sm dark:bg-slate-800 dark:border-slate-700">
+                <Fingerprint className="w-6 h-6 text-slate-400" />
+              </div>
+              <p className="text-sm font-black text-slate-500 leading-relaxed">
+                Tus datos de análisis pre-sesión IA son procesados de forma segura y nunca compartidos con terceros. Solo la Psicóloga Johana Villabón tiene acceso a tus resultados para mejorar la experiencia de tu terapia.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         <hr className="border-slate-200 dark:border-slate-800" />
