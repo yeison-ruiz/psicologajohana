@@ -15,11 +15,11 @@ export default function MeetingSection() {
           <div className="relative md:w-[42%]">
             <div className="relative w-full h-[500px] md:h-full">
               <Image
-                src="/profesional2.png"
-                alt="Sesión online por Videollamada"
+                src="/laptop-meet.png"
+                alt="Sesión de terapia por Google Meet"
                 fill
                 sizes="(max-width: 768px) 100vw, 500px"
-                className="object-cover object-top md:object-[80%_0%]"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
             </div>
             {/* Video Camera Button Overlay */}
