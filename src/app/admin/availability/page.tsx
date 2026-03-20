@@ -137,7 +137,7 @@ export default function AvailabilityPage() {
               durationMinutes: parseInt(
                 eventEl.getAttribute("data-duration-minutes") || "60",
               ),
-              price: parseInt(eventEl.getAttribute("data-price") || "120000"),
+              price: parseInt(eventEl.getAttribute("data-price") || "80000"),
               sessionType: eventEl.getAttribute("data-session-type") || eventEl.getAttribute("data-title"),
             },
           };
@@ -159,7 +159,7 @@ export default function AvailabilityPage() {
       return;
     }
 
-    let price = 120000;
+    let price = 80000;
     let type = "Terapia Individual";
 
     if (durationMins >= 90) {

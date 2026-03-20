@@ -19,7 +19,7 @@ export interface PresetBlock {
 }
 
 const defaultPresets: PresetBlock[] = [
-  { id: "1", title: "Individual (1 hr)", duration_minutes: 60, price: 120000, session_type: "Terapia Individual" },
+  { id: "1", title: "Individual (1 hr)", duration_minutes: 60, price: 80000, session_type: "Terapia Individual" },
   { id: "2", title: "Conjunta (1.5 hrs)", duration_minutes: 90, price: 180000, session_type: "Terapia Conjunta" },
   { id: "3", title: "Prioritaria (1 hr)", duration_minutes: 60, price: 150000, session_type: "Terapia Prioritaria" }
 ];
