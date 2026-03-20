@@ -4,7 +4,7 @@ test.describe('Authentication', () => {
   test('login page loads correctly', async ({ page }) => {
     await page.goto('/login');
     
-    await expect(page.getByText('Bienvenido de nuevo')).toBeVisible();
+    await expect(page.getByText('Tu espacio de bienestar')).toBeVisible();
     await expect(page.locator('input[name="email"]')).toBeVisible();
     await expect(page.locator('input[name="password"]')).toBeVisible();
     await expect(page.getByRole('button', { name: /Iniciar sesión/i })).toBeVisible();
@@ -34,6 +34,7 @@ test.describe('Authentication', () => {
     await expect(page.locator('input[name="name"]')).toBeVisible();
     
     await page.getByRole('button', { name: /Inicia sesión/i }).click();
-    await expect(page.getByText('Bienvenido de nuevo')).toBeVisible();
+    await expect(page.getByText('Tu espacio de bienestar')).toBeVisible();
   });
 });
+
