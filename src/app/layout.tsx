@@ -23,11 +23,18 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://psicologajohanavillabon.com"),
   title: "Psicóloga Johana Villabón | Terapia y Salud Mental Online",
   description:
-    "Descubre un espacio seguro para tu bienestar emocional. Consulta psicológica profesional online con la Psicóloga Johana Villabón. Terapia individual, conjunta y para el desarrollo personal.",
-  keywords: ["psicóloga online", "terapia psicológica", "salud mental", "psicóloga colombia", "bienestar emocional"],
+    "Descubre un espacio seguro para tu bienestar emocional. Consulta psicológica profesional online con la Psicóloga Johana Villabón. Terapia individual, cognitivo conductual, de pareja y para el desarrollo personal.",
+  keywords: ["psicóloga online", "terapia psicológica", "salud mental", "psicóloga colombia", "bienestar emocional", "psicología clínica", "terapia de pareja", "terapia online", "Johana Villabón"],
   authors: [{ name: "Johana Villabón" }],
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '256x256', type: 'image/png' },
+    ],
+    apple: '/icon.png',
+  },
   openGraph: {
     title: "Psicóloga Johana Villabón | Salud Mental",
     description: "Agenda tu sesión online de manera fácil, segura y confidencial.",
@@ -52,6 +59,19 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalBusiness',
+  name: 'Psicóloga Johana Villabón',
+  image: 'https://psicologajohanavillabon.com/profesional.png',
+  '@id': 'https://psicologajohanavillabon.com',
+  url: 'https://psicologajohanavillabon.com',
+  medicalSpecialty: 'Psychiatric',
+  description: 'Consulta psicológica profesional online enfocada en el bienestar emocional y la salud mental.',
+  areaServed: 'CO',
+  availableLanguage: ['es'],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,6 +87,10 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={`${poppins.variable} ${raleway.variable} ${playfair.variable}`}
