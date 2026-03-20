@@ -174,7 +174,7 @@ export default function Pricing() {
                 className="text-[#5D3F2E] text-[26px] font-black"
                 style={{ fontFamily: "var(--font-raleway)" }}
               >
-                Talleres y Prev.
+                Talleres de Prevención
               </h3>
             </div>
             <div className="px-10 py-12 flex-1 flex flex-col">
