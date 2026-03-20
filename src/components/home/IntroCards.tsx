@@ -69,8 +69,9 @@ export default function IntroCards() {
               <span className="font-medium">Online</span>
             </h3>
             <p className="text-white/80 text-[1rem] md:text-[1.2rem] lg:text-[1.3rem] leading-[1.6] mb-6">
-              Sesiones seguras por <strong>Google Meet</strong>, integradas en
-              tu <strong>Google Calendar</strong> y acompañadas de un{" "}
+              Tu <strong>espacio de bienestar</strong> a un clic. Conecta desde
+              la comodidad de tu hogar con total <strong>privacidad</strong> por
+              Google Meet y aprovecha nuestro{" "}
               <strong>Análisis Pre-sesión con IA</strong>.
             </p>
 
