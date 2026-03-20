@@ -163,7 +163,7 @@ export default function AvailabilityPage() {
     let type = "Terapia Individual";
 
     if (durationMins >= 90) {
-      price = 180000;
+      price = 120000;
       type = "Terapia Conjunta";
     }
 
