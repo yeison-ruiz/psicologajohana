@@ -28,7 +28,7 @@ export default function IntroCards() {
               "Duelo y Procesos de Pérdida",
               "Mejora de Autoestima",
               "Sesiones Online por Google Meet",
-              "Construcción del Proyecto de Vida",
+              "Construcción de tu Proyecto de Vida",
             ].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <div className="w-[10px] h-[10px] rounded-full bg-[#8A6046]" />

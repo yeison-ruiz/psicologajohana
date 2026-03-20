@@ -53,19 +53,19 @@ export default function MeetingSection() {
               }}
             />
 
-            <h3 className="text-[#2b2b2b] text-[24px] lg:text-[28px] font-bold leading-tight mb-3">
-              Todas las sesiones se realizan a través de Google Meet.
+            <h3 className="text-[#2b2b2b] text-[28px] lg:text-[34px] font-black leading-tight mb-4" style={{ fontFamily: 'var(--font-raleway)' }}>
+              Tu bienestar no tiene fronteras.
             </h3>
-            <p className="text-[#888] text-[1.3rem]">
-              Reserva tu horario y agenda tu cita en nuestro{" "}
-              <Link
-                href="/book"
-                className="text-[#8A6046] font-bold underline underline-offset-2 hover:text-[#6D4934]"
-              >
-                portal web
-              </Link>
-              .
+            <p className="text-[#666] text-[1.2rem] lg:text-[1.35rem] leading-[1.6] mb-6">
+              Conecta desde la <strong>privacidad de tu hogar</strong>. Nuestras sesiones por <strong>Google Meet</strong> eliminan las distancias para ofrecerte un espacio <strong>profesional y cálido</strong>, justo donde te encuentres.
             </p>
+            <Link
+              href="/book"
+              className="inline-flex items-center text-[#8A6046] font-black uppercase tracking-[0.15em] text-[14px] group"
+            >
+              Agendar mi espacio
+              <span className="ml-2 group-hover:translate-x-1 duration-300 transition-transform">→</span>
+            </Link>
           </div>
         </div>
       </div>
