@@ -57,7 +57,7 @@ function LoginFormParams() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center px-6 py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Shapes */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-100/50 mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 right-1/4 -mt-20 w-72 h-72 rounded-full bg-orange-100/50 mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
