@@ -67,7 +67,7 @@ export default function About() {
                 className="text-[#444] text-[1.05rem] lg:text-[1.25rem] leading-[1.6] italic font-medium"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
-                Puedo ayudarte a superar los miedos y obstáculos en tu vida.
+                Cuidar tu salud mental es un gran acto de amor propio.
               </p>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function About() {
                 <span className="w-[30px] h-[1.5px] bg-[#8A6046]" />
               </div>
               <span className="text-[13px] font-bold text-[#8A6046] uppercase tracking-[.2em]">
-                Permítanme Presentarles
+                Permítanme Presentarme
               </span>
             </div>
 
@@ -100,10 +100,10 @@ export default function About() {
 
             {/* Paragraphs */}
             <p className="text-[#777] text-[1.3rem] leading-[1.8] mb-4">
-              Con más de 10 años de experiencia profesional, me especializo en
+              Con más de 6 años de experiencia profesional, me especializo en
               brindar acompañamiento en salud mental a través de un enfoque
-              humano y comprensivo, ayudando a las personas a redescubrir su
-              bienestar emocional.
+              humano y comprensivo, ayudando a las personas en su camino hacia
+              una vida con mayor bienestar y sentido.
             </p>
             <p
               className="text-[#777] text-[1.3rem] leading-[1.8] mb-8"
@@ -115,7 +115,7 @@ export default function About() {
               Mi consulta se enfoca en ofrecer un espacio libre de juicios,
               incorporando empatía, estrategias psicoeducativas y herramientas
               terapéuticas probadas para caminar junto a ti en tu proceso de
-              sanación interior.
+              comprensión de tus emociones y decisiones
             </p>
 
             {/* Signature + Button */}

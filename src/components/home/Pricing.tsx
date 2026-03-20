@@ -56,7 +56,7 @@ export default function Pricing() {
                   className="text-[#2b2b2b] text-[54px] font-black leading-none mb-3"
                   style={{ fontFamily: "var(--font-raleway)" }}
                 >
-                  $120.000
+                  $80.000
                 </div>
                 <div
                   className="text-[#888] text-[18px] font-bold italic"

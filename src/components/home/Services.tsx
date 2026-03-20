@@ -40,7 +40,7 @@ const services = [
   },
   {
     title: "Terapia de Autoestima",
-    desc: "Procesos para fortalecer el amor propio, el autoconocimiento y sanar la autoimagen personal.",
+    desc: "Procesos para fortalecer el amor propio, el autoconocimiento y mejorar la autoimagen personal.",
     icon: <Smile className="w-6 h-6 text-white" />,
   },
   {
@@ -50,7 +50,7 @@ const services = [
   },
   {
     title: "Planificación del Futuro",
-    desc: "Asesoramiento vocacional y vital para ayudar a tomar decisiones y gestionar el cambio de manera asertiva.",
+    desc: "Asesoramiento vocacional y vital para aprender a tomar mejores decisiones de manera consiente.",
     icon: <Compass className="w-6 h-6 text-white" />,
   },
   {
@@ -62,7 +62,10 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#2b2b2b] pt-12 pb-20 md:pt-20 md:pb-40 relative">
+    <section
+      id="services"
+      className="bg-[#2b2b2b] pt-12 pb-20 md:pt-20 md:pb-40 relative"
+    >
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Header */}
         <div className="max-w-[700px] mb-16 relative z-10">

@@ -18,16 +18,17 @@ export default function IntroCards() {
           </h2>
           <p className="text-[1.1rem] md:text-[1.25rem] text-[#6b6b6b] leading-relaxed mb-8 max-w-[500px]">
             Soy la <strong>Psicóloga Johana Villabon</strong>. Mi misión es
-            brindarte las herramientas necesarias para que puedas navegar tus
+            brindarte las herramientas necesarias para que puedas manejar tus
             emociones y construir la vida que deseas.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5 mb-12">
             {[
               "Manejo de Ansiedad y Estrés",
-              "Terapia de Pareja y Relaciones",
+              "Terapia de Pareja",
               "Duelo y Procesos de Pérdida",
-              "Sanación de Autoestima",
+              "Mejora de Autoestima",
               "Sesiones Online por Google Meet",
+              "Construcción del Proyecto de Vida",
             ].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <div className="w-[10px] h-[10px] rounded-full bg-[#8A6046]" />
@@ -62,7 +63,9 @@ export default function IntroCards() {
           <div className="relative z-10 w-full h-full flex flex-col justify-center">
             <h3 className="text-[22px] sm:text-[30px] lg:text-[36px] leading-none mb-3 uppercase tracking-tighter text-white flex items-baseline gap-x-2 flex-wrap">
               <span className="font-medium">Consulta</span>
-              <span className="text-[40px] sm:text-[54px] lg:text-[64px] font-black text-white leading-none">100%</span>
+              <span className="text-[40px] sm:text-[54px] lg:text-[64px] font-black text-white leading-none">
+                100%
+              </span>
               <span className="font-medium">Online</span>
             </h3>
             <p className="text-white/80 text-[1rem] md:text-[1.2rem] lg:text-[1.3rem] leading-[1.6] mb-6">
@@ -75,7 +78,7 @@ export default function IntroCards() {
               <div className="flex items-center gap-3 bg-white/5 p-3 md:p-4 rounded-2xl border border-white/10 backdrop-blur-sm group/ai cursor-help relative overflow-hidden">
                 {/* Subtle animated background glow */}
                 <div className="absolute inset-0 bg-linear-to-r from-transparent via-[#8A6046]/10 to-transparent -translate-x-full group-hover/ai:translate-x-full transition-transform duration-1000" />
-                
+
                 <div className="flex items-center gap-2.5 relative z-10">
                   <div className="w-[45px] h-[45px] lg:w-[50px] lg:h-[50px] rounded-xl bg-white p-2 shadow-lg flex items-center justify-center transform group-hover/ai:scale-110 transition-transform relative">
                     <Image
@@ -93,10 +96,14 @@ export default function IntroCards() {
                       className="p-2 object-contain"
                     />
                   </div>
-                  
-                  <motion.div 
-                    animate={{ 
-                      boxShadow: ["0 0 0px rgba(138, 96, 70, 0)", "0 0 20px rgba(138, 96, 70, 0.2)", "0 0 0px rgba(138, 96, 70, 0)"] 
+
+                  <motion.div
+                    animate={{
+                      boxShadow: [
+                        "0 0 0px rgba(138, 96, 70, 0)",
+                        "0 0 20px rgba(138, 96, 70, 0.2)",
+                        "0 0 0px rgba(138, 96, 70, 0)",
+                      ],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                     className="w-[45px] h-[45px] lg:w-[50px] lg:h-[50px] rounded-xl bg-white border border-[#8A6046]/20 p-2 shadow-lg flex items-center justify-center transform group-hover/ai:scale-110 group-hover/ai:border-[#8A6046]/50 transition-all relative overflow-hidden"
@@ -105,14 +112,18 @@ export default function IntroCards() {
                     {/* Subtle shine effect */}
                     <motion.div
                       animate={{ x: ["-100%", "200%"] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                       className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-12"
                     />
                   </motion.div>
                 </div>
-                
+
                 <div className="h-[40px] w-px bg-white/20 mx-1 relative z-10" />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-[9px] font-bold uppercase tracking-[.15em] text-[#8A6046] bg-[#8A6046]/10 border border-[#8A6046]/20 px-2 py-0.5 rounded-full">
@@ -120,7 +131,9 @@ export default function IntroCards() {
                     </span>
                     <div className="flex items-center gap-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-[9px] font-bold text-emerald-300 uppercase tracking-widest">Activo</span>
+                      <span className="text-[9px] font-bold text-emerald-300 uppercase tracking-widest">
+                        Activo
+                      </span>
                     </div>
                   </div>
                   <span className="text-[17px] lg:text-[19px] font-bold text-white flex items-center gap-2">
@@ -133,7 +146,8 @@ export default function IntroCards() {
                     </motion.div>
                   </span>
                   <p className="text-[11px] text-white/50 font-medium leading-tight mt-1">
-                    Preparamos tu sesión para que aproveches cada minuto al máximo.
+                    Preparamos tu sesión para que aproveches cada minuto al
+                    máximo.
                   </p>
                 </div>
               </div>

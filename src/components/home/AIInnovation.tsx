@@ -130,8 +130,8 @@ export default function AIInnovation() {
                   </h4>
                 </div>
                 <p className="text-[#777] text-base leading-relaxed">
-                  Llega a la sesión con tus ideas organizadas. Johana recibirá
-                  un resumen clave para ir directo al grano.
+                  Llega a la sesión con tus ideas organizadas. La Psicóloga
+                  Johana recibirá un resumen clave para tu sesión.
                 </p>
               </div>
               <div className="space-y-4">
