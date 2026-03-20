@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { 
   PlusCircle, 
-  FileText 
+  FileText,
+  User,
+  Shield,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -56,6 +58,38 @@ export function QuickActions({ activeAppointmentId }: QuickActionsProps) {
             </span>
             <span className="text-sm font-bold text-slate-500">
               Recibo transferencia Nequi
+            </span>
+          </div>
+        </Link>
+        <Link
+          href="/paciente/perfil"
+          className="flex w-full items-center gap-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 p-4 text-left transition-colors hover:border-emerald-500 hover:bg-emerald-50 dark:hover:border-emerald-500 dark:hover:bg-emerald-900/10 group"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 group-hover:scale-110 transition-transform">
+            <User className="w-6 h-6" />
+          </div>
+          <div>
+            <span className="block font-bold text-slate-900 dark:text-white text-lg">
+              Mi Perfil
+            </span>
+            <span className="text-sm font-bold text-slate-500">
+              Datos y privacidad
+            </span>
+          </div>
+        </Link>
+        <Link
+          href="/privacy"
+          className="flex w-full items-center gap-4 rounded-2xl border-2 border-slate-100 dark:border-slate-800 p-4 text-left transition-colors hover:border-slate-400 hover:bg-slate-50 dark:hover:border-slate-400 dark:hover:bg-slate-800/50 group"
+        >
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 group-hover:scale-110 transition-transform">
+            <Shield className="w-5 h-5" />
+          </div>
+          <div>
+            <span className="block font-bold text-slate-900 dark:text-white text-lg">
+              Legal y Privacidad
+            </span>
+            <span className="text-sm font-bold text-slate-500">
+              Política de datos Col.
             </span>
           </div>
         </Link>
